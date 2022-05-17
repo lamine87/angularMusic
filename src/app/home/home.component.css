@@ -1,0 +1,21 @@
+  /* Image card */
+  .snip1374 {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+.snip1374 img {
+    vertical-align: top;
+    -webkit-transition: all 2s ease-out;
+    transition: all 2s ease-out;
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+.snip1374:hover img,
+.snip1374.hover img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+/* Image card */
