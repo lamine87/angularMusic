@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 mb-4" *ngFor="let media of medias">
       <figure
         action=""
         class="snip1374 hover"
         method="POST"
         enctype="multipart/form-data">
         <a href="" target="_self">
-          <img src="../../assets/img/gims.jpg" class="card-img-top img-fluid" />
+          <img src="{{media.image}}" class="card-img-top img-fluid" />
         </a>
         <div class="time">
           <img
@@ -15,43 +15,47 @@
             height="18px"
             width="18px"
           />
+          {{ media.created_at | date:'dd/MM/yy' }}
+          <div class="" style="display: inline-flex;">
+            <div>
+              <img
+                src="../../assets/icon/icon-partager-24.png"
+                class="reseaux"
+                width="15px"
+              />
+            </div>
+            <div>
+              <img
+                src="../../assets/icon/icon-visible2.png"
+                class="reseaux"
+                width="20px"
+              />
+            </div>
+            <div>
+              <img
+                src="../../assets/icon/icon-coeur-48.png"
+                class="reseaux"
+                width="20px"
+              />
+            </div>
+
+            <div id="likeBouton">
+              <img
+                src="../../assets/icon/dislike3.png"
+                class="reseaux"
+                width="16px"
+              />
+            </div>
+            <div class="counter">00</div>
+          </div>
+          <h6 class="titleClip">
+            {{ media.title }}
+         </h6>
         </div>
+
       </figure>
-      <div class="" style="display: inline-flex;">
-        <div>
-          <img
-            src="../../assets/icon/icon-partager-24.png"
-            class="reseaux"
-            width="15px"
-          />
-        </div>
-        <div>
-          <img
-            src="../../assets/icon/icon-visible2.png"
-            class="reseaux"
-            width="20px"
-          />
-        </div>
-        <div>
-          <img
-            src="../../assets/icon/icon-coeur-48.png"
-            class="reseaux"
-            width="20px"
-          />
-        </div>
 
-        <div id="likeBouton">
-          <img
-            src="../../assets/icon/dislike3.png"
-            class="reseaux"
-            width="16px"
-          />
-        </div>
-        <div class="counter">000</div>
-      </div>
       <div class="text-center">
-        <p class="card-text"></p>
-
         <a href="" type="" title="Facebook" class="" target="_blank">
           <img src="../../assets/icon/facebook-c32.png" alt="facebook"
         /></a>
@@ -62,6 +66,6 @@
     </div>
     <div class="col-md-12 text-center"></div>
   </div>
-  <br />
-  <br />
+
 </div>
+

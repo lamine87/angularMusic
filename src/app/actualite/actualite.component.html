@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let actualite of actualites">
+      <figure
+        action=""
+        class="snip1374 hover"
+        method="POST"
+        enctype="multipart/form-data">
+        <a href="" target="_self">
+          <img src="{{actualite.image}}" class="card-img-top img-fluid" />
+        </a>
+        <div class="time">
+          <img
+            src="../../assets/icon/icons8-horloge-64.png"
+            height="18px"
+            width="18px"
+          />
+          {{ actualite.created_at | date:'dd/MM/yy' }}
+          <h6 class="titleClip">
+            {{ actualite.title }}
+         </h6>
+        </div>
+    
+      </figure>
+      <div class="mt-0" style="display: inline-flex;">
+        <div>
+          <img
+            src="../../assets/icon/icon-partager-24.png"
+            class="reseaux"
+            width="15px"
+          />
+        </div>
+        <div>
+          <img
+            src="../../assets/icon/icon-visible2.png"
+            class="reseaux"
+            width="20px"
+          />
+        </div>
+        <div>
+          <img
+            src="../../assets/icon/icon-coeur-48.png"
+            class="reseaux"
+            width="20px"
+          />
+        </div>
+
+        <div id="likeBouton">
+          <img
+            src="../../assets/icon/dislike3.png"
+            class="reseaux"
+            width="16px"
+          />
+        </div>
+        <p class="titleClip">
+          {{ actualite.texte }}
+       </p>
+
+      </div>
+    </div>
+    <div class="col-md-12 text-center"></div>
+  </div>
+</div>
+

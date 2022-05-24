@@ -1,0 +1,25 @@
+
+.navbar-nav .nav-link{
+  color: #00ffeb;
+
+}
+.navbar-nav .nav-link:hover{
+  color: #e20a3f;
+}
+/* .dropdown-menu.show */
+.navbar-nav .dropdown-menu{
+  background-color: black;
+}
+
+a.dropdown-item{
+  color: white;
+}
+a.dropdown-item:hover{
+  color: black;
+}
+
+.dropdown-menu {
+  height: 170px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}

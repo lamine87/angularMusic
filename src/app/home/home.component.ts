@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Media } from '../models/media'
+
 
 @Component({
   selector: 'app-home',
@@ -6,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private url = 'http://127.0.0.1:8000/api/media';
+  medias!:Media[];
+  selectedHome!: Media;
 
-  constructor() { }
+  constructor(private http:HttpClient) {}
+
+  showHome(a :Media){
+    this.selectedHome = a;
+  }
 
   ngOnInit(): void {
+    this.http.get(this.url).subscribe((res:any)=>{
+      //console.log(res);
+      this.medias = res;
+
+    });
   }
 
 }
+
+
+
+
+
+
+

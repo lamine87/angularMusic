@@ -1,5 +1,5 @@
 /* Carousel */
-html, body, main {
+/* html, body, main {
     width: 100%;
     height: 500px;
 }
@@ -75,6 +75,6 @@ html, body, main {
 }
 #carousel div.nextRightSecond img {
     width: 200px;
-}
+} */
 
 /*Fin Carousel */
