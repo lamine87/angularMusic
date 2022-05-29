@@ -1,0 +1,54 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-2 h-40" >
+    <div class="row d-flex justify-content-center align-items-center h-20">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-3 text-center">
+            <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+            <div class="mb-md-5 mt-md-4 pb-5">
+              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+              <p class="text-white-50 mb-3">Veuillez saisir votre identifiant et votre mot de passe !</p>
+
+              <div class="form-outline form-white mb-2">
+                <input type="email" id="typeEmailX" placeholder="Email" class="form-control form-control-lg" name="email" ngModel/>
+                <label class="form-label" for="typeEmailX" >Email</label>
+              </div>
+
+              <div class="form-outline form-white mb-2">
+                <input type="password" id="typePasswordX" placeholder="Mot de passe" class="form-control form-control-lg" name="password" ngModel/>
+                <label class="form-label" for="typePasswordX" >Password</label>
+              </div>
+
+              <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Mot de passe oublié ?</a></p>
+
+              <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+            </div>
+
+            <div>
+              <p class="mb-0">Vous n'avez pas de compte ? <a href="#!" class="text-blue-50 fw-bold ">S'inscrire</a>
+              </p>
+              <p>Ou inscrivez-vous avec :</p>
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                 <img src="../../assets/icon/facebook.png" height="25px" width="25px" frameborder="0" />
+              </button>
+
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                <img src="../../assets/icon/google1.png" height="25px" width="25px" frameborder="0"/>
+              </button>
+
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                <img src="../../assets/icon/twitter.png" height="25px" width="25px" frameborder="0"/>
+              </button>
+
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                <img src="../../assets/icon/github.png" height="25px" width="25px" frameborder="0"/>
+              </button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

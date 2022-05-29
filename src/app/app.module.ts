@@ -11,7 +11,13 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { ActualiteComponent } from './actualite/actualite.component';
 import { PaysComponent } from './pays/pays.component';
 import { CategorieComponent } from './categorie/categorie.component';
-
+import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+//import { AuthenticationService } from './service/authentication.service';
+//import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -25,12 +31,20 @@ import { CategorieComponent } from './categorie/categorie.component';
     ActualiteComponent,
     PaysComponent,
     CategorieComponent,
-    
+    SearchComponent,
+    LoginComponent,
+    DashboardComponent,
+    //AuthenticationService
+    //Ng2SearchPipeModule
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

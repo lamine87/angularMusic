@@ -30,10 +30,12 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/carousel.component.js"
+              "src/assets/carousel.js",
+              "src/assets/auth.js"
             ]
           },
           "configurations": {
@@ -99,6 +101,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []

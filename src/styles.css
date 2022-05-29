@@ -118,9 +118,9 @@ html, body, main {
 .titleClip{
   text-align: center;
   color: blue;
-  text-decoration: none important;
+  /* text-decoration: none important; */
   font-weight: bold;
-}
 
+}
 
 

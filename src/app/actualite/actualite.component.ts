@@ -9,7 +9,8 @@ import { Actualites } from '../models/actualites'
 })
 export class ActualiteComponent implements OnInit {
 
-  private url = 'http://127.0.0.1:8000/api/actualite';
+  private url = 'http://127.0.0.1:8000/api';
+
   actualites!:Actualites[];
   selectedActualite!: Actualites;
 
@@ -21,7 +22,7 @@ export class ActualiteComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.http.get(this.url).subscribe((res:any)=>{
+    this.http.get(this.url+"/actualite").subscribe((res:any)=>{
      // console.log(res);
 
       this.actualites = res.actualites;

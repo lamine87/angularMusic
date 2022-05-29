@@ -6,6 +6,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { ActualiteComponent } from './actualite/actualite.component';
 import { PaysComponent } from './pays/pays.component';
 import { CategorieComponent } from './categorie/categorie.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'actualite', component: ActualiteComponent },
   { path: 'pays', component: PaysComponent },
   { path: 'categorie', component: CategorieComponent },
+  { path: 'login', component: LoginComponent },
   { path: "", redirectTo: "/home", pathMatch:"full" }
 ];
 
