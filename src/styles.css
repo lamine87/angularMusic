@@ -122,5 +122,8 @@ html, body, main {
   font-weight: bold;
 
 }
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark{
+  padding: 3px;
+}
 
 

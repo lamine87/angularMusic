@@ -35,7 +35,12 @@
             ],
             "scripts": [
               "src/assets/carousel.js",
-              "src/assets/auth.js"
+              "src/assets/auth.js",
+              "src/assets/css/app.css",
+              "src/assets/css/app.css.map",
+              "src/assets/css/style-back.min.css",
+              "src/assets/js/app.js",
+              "src/assets/js/app.js.map"
             ]
           },
           "configurations": {

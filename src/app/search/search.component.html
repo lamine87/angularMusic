@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 mb-4" *ngFor="let media of medias">
+    <div class="col-md-3 mb-4" *ngFor="let result of data">
       <figure
         action=""
         class="snip1374 hover"
         method="POST"
         enctype="multipart/form-data">
         <a href="" target="_self">
-          <img src="{{media.image}}" class="card-img-top img-fluid" />
+          <img src="{{result.image}}" class="card-img-top img-fluid" />
         </a>
         <div class="time">
           <img
@@ -15,7 +15,7 @@
             height="18px"
             width="18px"
           />
-          {{ media.created_at | date:'dd/MM/yy' }}
+          {{ result.created_at | date:'dd/MM/yy' }}
           <div class="" style="display: inline-flex;">
             <div>
               <img
@@ -49,7 +49,7 @@
             <div class="counter">00</div>
           </div>
           <h6 class="titleClip">
-            {{ media.title }}
+            {{ result.title }}
          </h6>
         </div>
 

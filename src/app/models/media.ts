@@ -1,4 +1,5 @@
 export interface Media {
+  id: string;
   url_video: string,
   texte: string,
   title: string,

@@ -7,6 +7,10 @@ import { ActualiteComponent } from './actualite/actualite.component';
 import { PaysComponent } from './pays/pays.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './service/auth.guard';
+import { SearchComponent } from './search/search.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +20,8 @@ const routes: Routes = [
   { path: 'pays', component: PaysComponent },
   { path: 'categorie', component: CategorieComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
   { path: "", redirectTo: "/home", pathMatch:"full" }
 ];
 
