@@ -29,16 +29,14 @@ export class LoginComponent implements OnInit {
   showDashboard(d :Login){
     this.selectedDashboard = d;
   }
- 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     // this.http.get(this.url+"/user").subscribe((res:any)=>{
     //   //console.log(res);
     //   this.users = res.users;
     // });
-
   }
-  
+
   onSubmit(form:NgForm){
     const email = form.value.email;
     const password = form.value.password;

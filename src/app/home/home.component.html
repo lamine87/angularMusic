@@ -2,10 +2,12 @@
 <app-carousel class="carouseel"></app-carousel>
 <div class="container">
   <div class="row">
-    <div class="col-md-3 mb-4" *ngFor="let media of medias">
+  <div class="col-lg-7">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let media of medias | paginate: { itemsPerPage: 6, currentPage: pages }">
       <figure
         action=""
-        class="snip1374 hover"
+        class="snip1374 hover homeCard"
         method="POST"
         enctype="multipart/form-data">
         <a href="" target="_self">
@@ -69,4 +71,36 @@
     <div class="col-md-12 text-center"></div>
   </div>
 </div>
+<div class="col-lg-1"></div>
+<div class="col-lg-4">
+  <div class="card mb-3 homeCard" style="max-width: 540px;" *ngFor="let activitie of activities">
+
+
+   <div class="row g-0">
+     <div class="col-md-6">
+       <img src="{{activitie.snippet.thumbnails.high.url}}" class="img-fluid rounded-start" alt="..."
+       />
+     </div>
+     <div class="col-md-6">
+       <div class="card-body">
+        <h6 class="titleClip">
+          {{ activitie.snippet.title }}
+       </h6>
+
+         <p class="card-text">{{ activitie.snippet.description }}</p>
+         <p class="card-text">
+          <img
+            src="../../assets/icon/icons8-horloge-64.png"
+            height="18px"
+            width="18px"
+          />
+          {{ activitie.snippet.publishedAt | date:'dd/MM/yy' }}</p>
+       </div>
+     </div>
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+<pagination-controls (pageChange)="pages = $event"></pagination-controls>
 

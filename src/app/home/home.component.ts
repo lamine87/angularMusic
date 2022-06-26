@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Media } from '../models/media';
+import { Youtube } from '../models/youtube';
 
 
 @Component({
@@ -8,10 +9,22 @@ import { Media } from '../models/media';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
+
 export class HomeComponent implements OnInit {
   private url = 'http://127.0.0.1:8000/api';
-  medias!:Media[];
+
+  pages: number = 1;
+  medias: any[] = [];
+  // medias!:Media[];
+
+
+  activities:any[] = [];
+ // activities!:Youtube[];
+
   selectedHome!: Media;
+  selectedYoutube!: Youtube;
 
   constructor(private http:HttpClient) {}
 
@@ -25,6 +38,13 @@ export class HomeComponent implements OnInit {
       this.medias = res;
 
     });
+
+    this.http.get(this.url+"/youtube").subscribe((res:any)=>{
+      //console.log(res);
+      this.activities = res.activities;
+
+    });
+
   }
 
 }

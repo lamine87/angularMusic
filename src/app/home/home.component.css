@@ -19,6 +19,12 @@
     transform: scale(1);
 }
 
+.homeCard{
+  background-color: rgb(215, 215, 215);
+}
+
+
+
 /* .time{
   display: inline-block;
 } */

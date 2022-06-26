@@ -1,5 +1,5 @@
 body{
-    background-color: white;
+    background-color: rgb(169, 167, 167);
     color: black;
     font-family: 'Roboto', sans-serif;
 }
@@ -124,6 +124,11 @@ html, body, main {
 }
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark{
   padding: 3px;
+}
+
+
+.ngx-pagination {
+  text-align: center;
 }
 
 
