@@ -14,9 +14,11 @@ import { CategorieComponent } from './categorie/categorie.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormdashboardComponent } from './formdashboard/formdashboard.component';
+
 //import { AuthenticationService } from './service/authentication.service';
 //import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -35,6 +37,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SearchComponent,
     LoginComponent,
     DashboardComponent,
+    FormdashboardComponent,
+
     //AuthenticationService
     //Ng2SearchPipeModule
 
@@ -45,6 +49,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxPaginationModule,
 
   ],

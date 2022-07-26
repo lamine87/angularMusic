@@ -24,10 +24,10 @@
             <li class="sidebar-header">
                 User
             </li>
-            <p *ngIf="user">{{ user.name }}</p>
+            <p *ngFor="let user of users" >{{ user.name }}</p>
             <li class="sidebar-item" >
                 <a class="sidebar-link" href="pages-profile.html">
-                    <i class="align-middle" data-feather="user"></i> 
+                    <i class="align-middle" data-feather="user"></i>
                     <span class="align-middle" ></span>
                 </a>
             </li>
@@ -212,74 +212,22 @@
     </nav>
 
     <main class="content">
-
             <div class="alert alert-success"></div>
+              <app-formdashboard class="formdashboard"></app-formdashboard>
 
-              <div class="d-flex justify-content-between align-items-center">
-                  <h1> Les Musiques </h1>
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Ajouter
-                  </button>
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                       <!-- le enctype="multipart/form-data" sert a prendre en compte l'input de type file -->
-                      <form action="../core/livreManager.php" method="post" enctype="multipart/form-data">
-                      <input type="hidden" name="action" value="add">
-                      <div class="modal-body">
-                          <div class="form-group mb-2">
-                              <label for="titre">Titre</label>
-                              <input type="text" name="titre" id="titre" class="form-controle" placeholder="Titre">
-                          </div>
-                          <div class="form-group mb-2">
-                              <label for="description">Description</label>
-                              <textarea name="description" id="description" cols="30" rows="6" class="form-control" placeholder="Message"></textarea>
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="auteur">Genres</label>
-                            <input type="text" name="auteur" id="auteur" class="form-control" placeholder="Genres Musical">
-                        </div>
-                          <div class="form-group mb-2">
-                              <label for="auteur">Artiste</label>
-                              <input type="text" name="auteur" id="auteur" class="form-control" placeholder="Nom d'artiste">
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="auteur">Lien Video</label>
-                            <input type="text" name="auteur" id="auteur" class="form-control" placeholder="Lien de la video">
-                          </div>
-                          <div class="form-group">
-                              <label for="visuel">Image</label>
-                              <input type="file" name="visuel" id="visuel" class="form-control">
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-primary">Ajouter</button>
-                      </div>
-                      </form>
-                      </div>
-                  </div>
-                  </div>
-              </div>
       <table class="table table-striped table-responsive">
                   <thead>
                       <tr>
                           <th>Id</th>
                           <th>Image</th>
-                          <th>Artiste</th>
+                          <th>Titre</th>
                           <th>Genres</th>
+
                           <th class="text-end">Actions</th>
                       </tr>
                   </thead>
                   <tbody>
-                  
+
 
                       <tr *ngFor="let media of medias">
                           <td>{{ media.id }}</td>
@@ -293,7 +241,7 @@
                       </tr>
 
                   </tbody>
-              </table>
+        </table>
     </main>
 
   </div>

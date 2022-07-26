@@ -11,7 +11,6 @@ import { Youtube } from '../models/youtube';
 })
 
 
-
 export class HomeComponent implements OnInit {
   private url = 'http://127.0.0.1:8000/api';
 
@@ -19,7 +18,7 @@ export class HomeComponent implements OnInit {
   medias: any[] = [];
   // medias!:Media[];
 
-
+ 
   activities:any[] = [];
  // activities!:Youtube[];
 

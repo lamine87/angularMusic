@@ -31,10 +31,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     // this.http.get(this.url+"/user").subscribe((res:any)=>{
     //   //console.log(res);
     //   this.users = res.users;
     // });
+
   }
 
   onSubmit(form:NgForm){

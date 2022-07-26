@@ -4,7 +4,7 @@ import { Pays } from '../models/pays';
 import { Categories } from '../models/categories';
 import { DataService } from '../service/data.service';
 import { Media } from '../models/media';
-// import { SearchComponent } from '../search/search.component'; 
+// import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
 
       this.pays = res.pays;
     });
- 
+
 
     this.http.get(this.url+"/categorie").subscribe((res:any)=>{
       //console.log(res);
@@ -50,9 +50,9 @@ export class HeaderComponent implements OnInit {
     });
 
 
-    
+
   }
- 
+
   getMediaSearch(title: any){
     const keyword = title.target.value;
     // console.log(keyword)

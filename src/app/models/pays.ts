@@ -1,4 +1,5 @@
 export interface Pays {
-    name: string,
+  id: string;
+  name: string,
 }
 

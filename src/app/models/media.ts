@@ -1,4 +1,4 @@
-export interface Media {
+export interface Media{
   id: string;
   url_video: string,
   texte: string,
@@ -7,6 +7,7 @@ export interface Media {
   lien_instagram: string,
   image: string,
   categories: string,
-  created_at: string
+  pay_id: string,
+  created_at: string,
 }
 

@@ -23,6 +23,20 @@
   background-color: rgb(215, 215, 215);
 }
 
+.titleClip{
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.card-text{
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
 
 
 /* .time{

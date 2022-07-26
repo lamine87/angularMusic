@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './service/auth.guard';
 import { SearchComponent } from './search/search.component';
+import { FormdashboardComponent } from './formdashboard/formdashboard.component';
 
 
 const routes: Routes = [
@@ -22,8 +23,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
+  { path: 'add/media', component: FormdashboardComponent },
   { path: "", redirectTo: "/home", pathMatch:"full" },
-  // { path: "login", redirectTo: "/dashboard", pathMatch:"full" }
+  // { path: "login", redirectTo: "/dashboard", pathMatch:"full" } /add/media
 ];
 
 @NgModule({
