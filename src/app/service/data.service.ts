@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { MediaModel } from '../formdashboard/dashboardMediaModel';
 // import { environment } from 'src/environments/environment.prod';
 
 
@@ -10,15 +10,16 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class DataService {
   public url = 'http://127.0.0.1:8000/api';
   constructor(private http: HttpClient) { }
-  // getData(){
-  //   return this.http.get('http://127.0.0.1:8000/api')
-  // }
+  getData(){
+    return this.http.get('http://127.0.0.1:8000/api')
+  }
 
   // getYoutube(){
   //   return this.http.get('http://127.0.0.1:8000/api')
   // }
 
   getSearchTitle(title: string){
+
     const response = new Promise(resolve => {
       this.http.get(this.url+`/media/search/${title}`).subscribe(data =>{
         resolve(data);
@@ -29,7 +30,10 @@ export class DataService {
     return response;
   }
 
+  // postMedia(data: MediaModel){
+  //   return this.http.post(this.url+"/add/media", data)
 
+  // }
 
 
 }

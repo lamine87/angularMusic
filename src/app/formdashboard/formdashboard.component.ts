@@ -20,13 +20,15 @@ import { MediaModel } from './dashboardMediaModel';
 })
 export class FormdashboardComponent implements OnInit {
   // data: any;
-  private url ='http://localhost:8000/api';
+  // private url ='http://localhost:8000/api';
   medias: any[] = [];
-  // selectedMedia!: Media;
-  formValue !: FormGroup;
-  mediaModelObj :  MediaModel = new MediaModel();
 
-  constructor(private formbuilder: FormBuilder, private http: HttpClient, private api: ApiService) {}
+  formValue !: FormGroup;
+  // mediaModel = new MediaModel;
+
+  mediaModel :  MediaModel = new MediaModel();
+  // mediaData!: any;
+  constructor(private formbuilder: FormBuilder,  private api: ApiService) {}
 
 
   ngOnInit(): void {
@@ -36,22 +38,35 @@ export class FormdashboardComponent implements OnInit {
       url_video: [''],
       image: ['']
     })
+    // this.getAllMedia();
   }
   postMediaDetail(){
-    this.mediaModelObj.title = this.formValue.value.title;
-    this.mediaModelObj.texte = this.formValue.value.texte;
-    this.mediaModelObj.url_video = this.formValue.value.url_video;
-    this.mediaModelObj.image = this.formValue.value.image;
-
-    this.api.postMedia(this.mediaModelObj)
+    this.mediaModel.title = this.formValue.value.title;
+    this.mediaModel.texte = this.formValue.value.texte;
+    this.mediaModel.url_video = this.formValue.value.url_video;
+    this.mediaModel.image = this.formValue.value.image;
+    console.log(this.mediaModel);
+    this.api.postMedia(this.mediaModel)
     .subscribe(res=>{
       console.log(res);
       alert("Ajouter avec succès")
+
+      let ref = document.getElementById('cancel')
+      ref?.click();
       this.formValue.reset();
+      // this.getAllMedia();
+
     }, err=>{
       alert("Une erreur s'est produite")
     })
   }
+
+  // getAllMedia(){
+  //   this.api.getMedia().subscribe(res=>{
+  //     this.mediaData =res;
+  //   })
+  // }
+
 
 
 }

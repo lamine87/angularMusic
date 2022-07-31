@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './service/auth.guard';
 import { SearchComponent } from './search/search.component';
 import { FormdashboardComponent } from './formdashboard/formdashboard.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -22,8 +23,8 @@ const routes: Routes = [
   { path: 'categorie', component: CategorieComponent },
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
-  { path: 'add/media', component: FormdashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  // { path: 'add/media', component: FormdashboardComponent },
   { path: "", redirectTo: "/home", pathMatch:"full" },
   // { path: "login", redirectTo: "/dashboard", pathMatch:"full" } /add/media
 ];
