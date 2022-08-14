@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "url_video": "https://youtu.be/vnaykXFFXgg",
+      "texte": "Teknonnoo",
+      "title": "Tekno",
+      "image": "C:\\fakepath\\teckno.jpg",
+      "id": 2
+    },
+    {
+      "url_video": "https://youtu.be/vnaykXFFXgg",
+      "texte": "Tekteknono",
+      "title": "Tekno",
+      "image": "C:\\fakepath\\teckno.jpg",
+      "id": 3
+    },
+    {
+      "url_video": "https://youtu.be/vnaykXFFXgg",
+      "texte": "Teknonotek",
+      "title": "Tekno",
+      "image": "C:\\fakepath\\teckno.jpg",
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

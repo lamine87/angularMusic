@@ -1,72 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { Media } from '../models/media';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
-import { DataService } from '../service/data.service';
 import { ApiService } from '../service/api.service';
-import { MediaModel } from './dashboardMediaModel';
+import { Media } from './media'
+import { DataService } from '../service/data.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+
 @Component({
   selector: 'app-formdashboard',
   templateUrl: './formdashboard.component.html',
   styleUrls: ['./formdashboard.component.css']
 })
 export class FormdashboardComponent implements OnInit {
-  // data: any;
-  // private url ='http://localhost:8000/api';
-  medias: any[] = [];
+  files: any;
+  data: any;
+  submitted= false;
+  form!: FormGroup;
+  media = new Media();
 
-  formValue !: FormGroup;
-  // mediaModel = new MediaModel;
-
-  mediaModel :  MediaModel = new MediaModel();
-  // mediaData!: any;
-  constructor(private formbuilder: FormBuilder,  private api: ApiService) {}
+  constructor(private dataService: DataService, private formBuilder: FormBuilder) {}
 
 
-  ngOnInit(): void {
-    this.formValue = this.formbuilder.group({
-      title: [''],
-      texte: [''],
-      url_video: [''],
-      image: ['']
-    })
-    // this.getAllMedia();
+
+    createForm() {
+      this.form = this.formBuilder.group({
+        title: [''],
+        texte: [''],
+        url_video: [''],
+        image: [null, Validators.required]
+      })
+    }
+    ngOnInit(): void {
+      this.createForm();
+    }
+
+    get f(){
+      return this.form.controls
+    }
+    uploadImage(event: any){
+      this.files = event.target.files[0];
+      console.log(this.files)
+    }
+    onSubmit(){
+      this.submitted = true;
+
+      const formData = new FormData();
+      formData.append("image",this.files, this.files.name);
+      formData.append("title", this.form.value.title);
+      formData.append("texte", this.form.value.texte);
+      formData.append("url_video", this.form.value.url_video);
+
+      this.dataService.uploadData(formData).subscribe(res=>{
+        this.data = res;
+          console.log(this.data);
+      })
+    }
   }
-  postMediaDetail(){
-    this.mediaModel.title = this.formValue.value.title;
-    this.mediaModel.texte = this.formValue.value.texte;
-    this.mediaModel.url_video = this.formValue.value.url_video;
-    this.mediaModel.image = this.formValue.value.image;
-    console.log(this.mediaModel);
-    this.api.postMedia(this.mediaModel)
-    .subscribe(res=>{
-      console.log(res);
-      alert("Ajouter avec succès")
-
-      let ref = document.getElementById('cancel')
-      ref?.click();
-      this.formValue.reset();
-      // this.getAllMedia();
-
-    }, err=>{
-      alert("Une erreur s'est produite")
-    })
-  }
-
-  // getAllMedia(){
-  //   this.api.getMedia().subscribe(res=>{
-  //     this.mediaData =res;
-  //   })
-  // }
 
 
 
-}

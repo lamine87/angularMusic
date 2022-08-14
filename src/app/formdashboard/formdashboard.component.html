@@ -15,16 +15,15 @@
       </div>
        <!-- le enctype="multipart/form-data" sert a prendre en compte l'input de type file -->
 
-      <form [formGroup]="formValue">
-      <input type="hidden" name="action" value="add">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" enctype="multipart/form-data">
       <div class="modal-body">
           <div class="form-group mb-2">
               <label class="form-label" for="title">Titre</label>
               <input type="text" name="title" id="title" class="form-controle" placeholder="Titre" formControlName="title">
           </div>
           <div class="form-group mb-2">
-              <label class="form-label" for="texte">Description</label>
-              <textarea  name="texte" id="texte" cols="30" rows="6" class="form-control" placeholder="Description" formControlName="texte"></textarea>
+              <label class="form-label" for="texte">Texte</label>
+              <textarea type="text" name="texte" id="texte" cols="30" rows="6" class="form-control" placeholder="Texte" formControlName="texte"></textarea>
           </div>
 
 
@@ -34,12 +33,17 @@
           </div>
           <div class="form-group">
               <label class="form-label" for="image">Image</label>
-              <input type="file" name="image" id="image" class="form-control" formControlName="image">
-          </div>
+              <input type="file" name="image" id="image" class="form-control" formControlName="image"
+              (change)="uploadImage($event)" [ngClass]="{'is-invalid': submitted && f.image.errors}">
+
+              <div *ngif="submitted && f.image.errors" class="invalid-feedback">
+                <div *ngif="f.image.errors.required" class="" >Image required</div>
+              </div>
+            </div>
       </div>
       <div class="modal-footer">
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-          <button type="submit" (click)="postMediaDetail()" class="btn btn-primary">Ajouter</button>
+          <button type="submit"  class="btn btn-primary">Ajouter</button>
       </div>
       </form>
       </div>

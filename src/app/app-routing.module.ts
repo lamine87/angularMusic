@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchComponent },
   { path: 'dashboard', component: DashboardComponent },
-  // { path: 'add/media', component: FormdashboardComponent },
+  { path: 'addmedia', component: FormdashboardComponent },
   { path: "", redirectTo: "/home", pathMatch:"full" },
   // { path: "login", redirectTo: "/dashboard", pathMatch:"full" } /add/media
 ];

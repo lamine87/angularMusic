@@ -1,18 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MediaModel } from '../formdashboard/dashboardMediaModel';
-// import { environment } from 'src/environments/environment.prod';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs';
+import { Media } from '../models/media';
+import { Observable } from 'rxjs';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpErrorResponse } from "@angular/common/http";
+import { environment } from 'src/environments/environment.prod';
+
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  public url = 'http://127.0.0.1:8000/api';
+  public url:string = 'http://localhost:8000/api';
+
   constructor(private http: HttpClient) { }
-  getData(){
-    return this.http.get('http://127.0.0.1:8000/api')
+
+  uploadData(data:any) {
+    const headers = new HttpHeaders();
+    return this.http.post(this.url+'/addmedia', data,{
+      headers: headers
+    })
   }
+
+  // getData(){
+  //   return this.http.get('http://127.0.0.1:8000/api')
+  // }
 
   // getYoutube(){
   //   return this.http.get('http://127.0.0.1:8000/api')
@@ -30,10 +45,7 @@ export class DataService {
     return response;
   }
 
-  // postMedia(data: MediaModel){
-  //   return this.http.post(this.url+"/add/media", data)
 
-  // }
 
 
 }
