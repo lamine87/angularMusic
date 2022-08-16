@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { Media } from './media'
 import { DataService } from '../service/data.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-formdashboard',
@@ -22,7 +22,8 @@ export class FormdashboardComponent implements OnInit {
   form!: FormGroup;
   media = new Media();
 
-  constructor(private dataService: DataService, private formBuilder: FormBuilder) {}
+  constructor(private dataService: DataService, private formBuilder: FormBuilder,
+    private toastr: ToastrService, private router: Router) {}
 
 
 
@@ -48,6 +49,10 @@ export class FormdashboardComponent implements OnInit {
     onSubmit(){
       this.submitted = true;
 
+      if(this.form.invalid){
+        return;
+      }
+
       const formData = new FormData();
       formData.append("image",this.files, this.files.name);
       formData.append("title", this.form.value.title);
@@ -57,7 +62,21 @@ export class FormdashboardComponent implements OnInit {
       this.dataService.uploadData(formData).subscribe(res=>{
         this.data = res;
           console.log(this.data);
-      })
+          if(this.data.status = true){
+            this.toastr.success(JSON.stringify(this.data.message),'',{
+              timeOut: 2000,
+              progressBar:true
+            })
+            this.router.navigate(['/dashboard']);
+          }else{
+            this.toastr.error(JSON.stringify(this.data.message),'',{
+              timeOut: 2000,
+              progressBar:true
+            })
+          }
+            this.submitted = false;
+            // this.form.get('image').reset();
+      });
     }
   }
 

@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormdashboardComponent } from './formdashboard/formdashboard.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 //import { AuthenticationService } from './service/authentication.service';
 //import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -54,7 +56,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

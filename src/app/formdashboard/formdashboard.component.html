@@ -34,7 +34,7 @@
           <div class="form-group">
               <label class="form-label" for="image">Image</label>
               <input type="file" name="image" id="image" class="form-control" formControlName="image"
-              (change)="uploadImage($event)" [ngClass]="{'is-invalid': submitted && f.image.errors}">
+              (change)="uploadImage($event)" [ngClass]="{'is-invalid': submitted }">
 
               <div *ngif="submitted && f.image.errors" class="invalid-feedback">
                 <div *ngif="f.image.errors.required" class="" >Image required</div>
