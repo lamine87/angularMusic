@@ -3,7 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { Media } from './media'
@@ -19,10 +19,10 @@ export class FormdashboardComponent implements OnInit {
   files: any;
   data: any;
   submitted= false;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   media = new Media();
 
-  constructor(private dataService: DataService, private formBuilder: FormBuilder,
+  constructor(private dataService: DataService, private formBuilder: UntypedFormBuilder,
     private toastr: ToastrService, private router: Router) {}
 
 
