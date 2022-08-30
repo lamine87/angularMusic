@@ -14,11 +14,10 @@ import { Youtube } from '../models/youtube';
 export class HomeComponent implements OnInit {
   private url = 'http://127.0.0.1:8000/api';
 
-  pages: number = 1;
+  pages: number = 1;   // Pagination
   medias: any[] = [];
-  // medias!:Media[];
 
- 
+
   activities:any[] = [];
  // activities!:Youtube[];
 

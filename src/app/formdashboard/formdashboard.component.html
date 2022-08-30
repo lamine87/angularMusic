@@ -23,22 +23,45 @@
           </div>
           <div class="form-group mb-2">
               <label class="form-label" for="texte">Texte</label>
-              <textarea type="text" name="texte" id="texte" cols="30" rows="6" class="form-control" placeholder="Texte" formControlName="texte"></textarea>
+              <textarea type="text" name="texte" id="texte" cols="30" rows="2" class="form-control" placeholder="Texte" formControlName="texte"></textarea>
           </div>
-
 
           <div class="form-group mb-2">
             <label class="form-label" for="url_video">Lien Video</label>
             <input type="text" name="url_video" id="url_video" class="form-control" placeholder="Lien de la video" formControlName="url_video">
           </div>
+
+
+          <div class="form-group mb-2">
+            <label class="form-label" for="pays">Continent</label>
+            <select class="form-select" formControlName="pays" >
+                 <option [ngValue]="null"  disabled >Select Continent</option>
+                  <option *ngFor="let pay of pays" class="dropdown-item" [ngValue]="pay.id"  name="pays" id="pays">
+                    {{ pay.name }}</option>
+            </select>
+         </div>
+
+         <div class="form-group mb-2">
+          <label class="form-label" for="categorie">Genre Musical</label>
+          <select class="form-select" formControlName="categories" >
+               <option [ngValue]="null"  disabled >Select Continent</option>
+                <option *ngFor="let categorie of categories" class="dropdown-item"
+                [ngValue]="categorie.id"  name="categories" id="categories">
+                  {{ categorie.name }}</option>
+          </select>
+        </div>
+
+
           <div class="form-group">
               <label class="form-label" for="image">Image</label>
               <input type="file" name="image" id="image" class="form-control" formControlName="image"
-              (change)="uploadImage($event)" [ngClass]="{'is-invalid': submitted }">
+
+              (change)="uploadImage($event)" [ngClass]="{'is-invalid': 'submitted && f.image.errors' }">
 
               <div *ngif="submitted && f.image.errors" class="invalid-feedback">
                 <div *ngif="f.image.errors.required" class="" >Image required</div>
               </div>
+
             </div>
       </div>
       <div class="modal-footer">

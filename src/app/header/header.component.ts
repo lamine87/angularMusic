@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get(this.url+"/pays").subscribe((res:any)=>{
-
       this.pays = res.pays;
     });
 
@@ -46,7 +45,6 @@ export class HeaderComponent implements OnInit {
     this.http.get(this.url+"/categorie").subscribe((res:any)=>{
       //console.log(res);
       this.categories = res.categorie;
-
     });
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient} from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,14 +18,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormdashboardComponent } from './formdashboard/formdashboard.component';
+import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 
 
 //import { AuthenticationService } from './service/authentication.service';
 //import { Ng2SearchPipeModule } from 'ng2-search-filter';
-const appRoutes: Routes = [
-  { path: '', component:HomeComponent}
-]
+// const appRoutes: Routes = [
+//   { path: '', component:HomeComponent}
+// ]
 
 
 @NgModule({
@@ -56,7 +57,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    CommonModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

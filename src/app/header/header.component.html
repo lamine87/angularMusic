@@ -1,24 +1,54 @@
 <header class="header">
-  <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">YoMusic</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse navbar-dark" id="navbarSupportedContent">
+      <div
+        class="collapse navbar-collapse navbar-dark"
+        id="navbarSupportedContent"
+      >
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/home']" routerLinkActive="router-link-active"  aria-current="page">Home</a>
+            <a
+              class="nav-link active"
+              [routerLink]="['/home']"
+              routerLinkActive="router-link-active"
+              aria-current="page"
+              >Home</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/actualite']" routerLinkActive="router-link-active" aria-current="page">Actualité</a>
+            <a
+              class="nav-link active"
+              [routerLink]="['/actualite']"
+              routerLinkActive="router-link-active"
+              aria-current="page"
+              >Actualité</a
+            >
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Variété
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li *ngFor="let categorie of categories">
                 <a class="dropdown-item">{{ categorie.name }}</a>
               </li>
@@ -26,24 +56,42 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Continent
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li *ngFor="let pay of pays">
                 <a class="dropdown-item" href="#"> {{ pay.name }}</a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/login']" routerLinkActive="router-link-active"  aria-current="page" *ngIf="!loggedIn">S'Identifier
+            <a
+              class="nav-link active"
+              [routerLink]="['/login']"
+              routerLinkActive="router-link-active"
+              aria-current="page"
+              *ngIf="!loggedIn"
+              >S'Identifier
             </a>
           </li>
-         </ul>
+        </ul>
 
         <form class="d-flex" role="search">
-          <input  type="text" (input)="getMediaSearch($event)" 
-          class="form-control me-2" placeholder="Search" aria-label="Search">
+          <input
+            type="text"
+            (input)="getMediaSearch($event)"
+            class="form-control me-2"
+            placeholder="Search"
+            aria-label="Search"
+          />
         </form>
       </div>
     </div>
@@ -57,9 +105,10 @@
         action=""
         class="snip1374 hover"
         method="POST"
-        enctype="multipart/form-data">
+        enctype="multipart/form-data"
+      >
         <a href="" target="_self">
-          <img src="{{result.image}}" class="card-img-top img-fluid" />
+          <img src="{{ result.image }}" class="card-img-top img-fluid" />
         </a>
         <div class="time">
           <img
@@ -67,8 +116,8 @@
             height="18px"
             width="18px"
           />
-          {{ result.created_at | date:'dd/MM/yy' }}
-          <div class="" style="display: inline-flex;">
+          {{ result.created_at | date: "dd/MM/yy" }}
+          <div class="" style="display: inline-flex">
             <div>
               <img
                 src="../../assets/icon/icon-partager-24.png"
@@ -102,9 +151,8 @@
           </div>
           <h6 class="titleClip">
             {{ result.title }}
-         </h6>
+          </h6>
         </div>
-
       </figure>
 
       <div class="text-center">
