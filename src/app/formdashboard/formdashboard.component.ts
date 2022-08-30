@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Pays } from '../models/pays';
 import { Categories } from '../models/categories';
 
+
 @Component({
   selector: 'app-formdashboard',
   templateUrl: './formdashboard.component.html',
@@ -100,8 +101,12 @@ export class FormdashboardComponent implements OnInit {
           timeOut: 2000,
           progressBar: true,
         });
-        // this.form.reset();
-        this.router.navigate(['/dashboard']);
+
+        // alert("Envoyer avec succes")
+        let ref = document.getElementById('cancel');
+        ref?.click();
+        this.form.reset();
+
       } else {
         this.toastr.error(JSON.stringify(this.data.message), '', {
           timeOut: 2000,
@@ -109,7 +114,7 @@ export class FormdashboardComponent implements OnInit {
         });
       }
       this.submitted = false;
-      // this.form.get('image').reset();
+
     });
   }
 }

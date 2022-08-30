@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient} from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule} from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,7 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormdashboardComponent } from './formdashboard/formdashboard.component';
-import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -49,6 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
 
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -57,7 +58,6 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    CommonModule,
     ToastrModule.forRoot(),
 
   ],
