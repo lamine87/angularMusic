@@ -5,7 +5,7 @@ export interface Media{
   title: string,
   image: string,
   categories: string,
-  pay_id: string,
+  pays: string,
   created_at: string
 }
 

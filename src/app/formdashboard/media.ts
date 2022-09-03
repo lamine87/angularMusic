@@ -4,10 +4,8 @@ export class Media {
   texte:  any;
   title:  any;
   image:  any;
+  pays:  any;
+  categories: any;
+  created_at: any
 
-  // lien_facebook:  any;
-  // lien_instagram:  any;
-  // categories:  any;
-  // pay_id:  any;
-  // created_at:  any;
 }

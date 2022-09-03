@@ -25,6 +25,17 @@ export class DataService {
     })
   }
 
+  // updateMedia(id:any) {
+  //   const headers = new HttpHeaders();
+  //   return this.http.post(this.url+'/update/media/'+id, {
+  //     headers: headers
+  //   })
+  // }
+
+  deleteMedia(id: any){
+    return this.http.post(this.url+'/destroy/media/'+id,{
+    })
+  }
   // getData(){
   //   return this.http.get('http://127.0.0.1:8000/api')
   // }

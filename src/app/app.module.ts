@@ -20,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormdashboardComponent } from './formdashboard/formdashboard.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DataService } from './service/data.service';
 
 
 //import { AuthenticationService } from './service/authentication.service';
@@ -44,6 +45,8 @@ import { ToastrModule } from 'ngx-toastr';
     DashboardComponent,
     FormdashboardComponent,
 
+
+
     //AuthenticationService
     //Ng2SearchPipeModule
 
@@ -61,7 +64,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

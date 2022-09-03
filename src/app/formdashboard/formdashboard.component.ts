@@ -17,7 +17,7 @@ import { Categories } from '../models/categories';
 })
 export class FormdashboardComponent implements OnInit {
   public url:string = 'http://localhost:8000/api';
-
+  // medias!:Media[];
   files: any;
   data: any;
   submitted = false;
@@ -35,7 +35,8 @@ export class FormdashboardComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private dashboard: DashboardComponent
   ) {}
 
 
@@ -114,7 +115,9 @@ export class FormdashboardComponent implements OnInit {
         });
       }
       this.submitted = false;
-
+      this.dashboard.getMedia();
     });
   }
+
+
 }

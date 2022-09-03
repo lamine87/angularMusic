@@ -216,32 +216,41 @@
               <app-formdashboard class="formdashboard"></app-formdashboard>
 
       <table class="table table-striped table-responsive">
-                  <thead>
-                      <tr>
-                          <th>Id</th>
-                          <th>Image</th>
-                          <th>Titre</th>
-                          <th>Genres</th>
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Image</th>
+                      <th>Titre</th>
+                      <th>Genres</th>
 
-                          <th class="text-end">Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
+                      <th class="text-end">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
 
 
-                      <tr *ngFor="let media of medias">
-                          <td>{{ media.id }}</td>
-                          <td> <img src="{{media.image}}" class="tableDashboard" /></td>
-                          <td>{{media.title}}</td>
-                          <td>{{media.categories}}</td>
-                          <td class="text-end">
-                                  <a href="" class="btn btn-danger"><img src="../../assets/icon/delete1.png" class="deleteEdit" /><i class="align-middle" data-feather="trash"></i></a>
-                                  <a href="" class="btn btn-primary ms-3"><img src="../../assets/icon/edit1.png" class="deleteEdit" /><i class="align-middle" data-feather="edit-2"></i></a>
-                          </td>
-                      </tr>
+                  <tr *ngFor="let media of medias">
+                      <td>{{ media.id }}</td>
+                      <td> <img src="{{media.image}}" class="tableDashboard" /></td>
+                      <td>{{media.title}}</td>
+                      <td >{{ media.categories }}</td>
+                      <td class="text-end">
+                          <button (click)="deleteMedia(media['id'])" class="btn btn-danger"><img src="../../assets/icon/delete1.png" class="deleteEdit" />
+                            <i class="align-middle" data-feather="trash"></i>
+                          </button>
 
-                  </tbody>
-        </table>
+                          <button  class="btn btn-primary ms-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <img src="../../assets/icon/edit1.png" class="deleteEdit" />
+                            <i class="align-middle" data-feather="edit-2"></i>
+                          </button>
+
+                      </td>
+                  </tr>
+
+
+            </tbody>
+      </table>
+
     </main>
 
   </div>

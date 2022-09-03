@@ -4,10 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Media } from '../models/media';
 import { Users } from '../models/users';
 import { Router } from '@angular/router';
-// import { LoginComponent } from '../login/login.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categories } from '../models/categories';
 import { Pays } from '../models/pays';
 import { NgForm } from '@angular/forms';
+import { DataService } from '../service/data.service';
+
 
 
 @Component({
@@ -29,11 +31,16 @@ export class DashboardComponent implements OnInit {
     selectedPays!: Pays;
 
     users!:Users[];
+    form!: FormGroup;
 
 
   // selectedDashboard!: Users;
 
-  constructor(private http:HttpClient, private router: Router) {}
+  constructor(private http:HttpClient,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    // private formdashboard: FormdashboardComponent,
+    private dataService:DataService) {}
 
     showCategorie(cat :Categories){
       this.selectedCategorie = cat;
@@ -47,10 +54,9 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.http.get(this.url+"/media").subscribe((res:any)=>{
-      //console.log(res);
-      this.medias = res;
-    });
+    this.getMedia();
+    // this.openEdit(id:any);
+
 
     this.http.get(this.url+"/user").subscribe((res:any)=>{
       //console.log(res);
@@ -65,9 +71,49 @@ export class DashboardComponent implements OnInit {
 
       this.pays = res.pays;
     });
-
+  }
+  get f() {
+    return this.form.controls;
   }
 
+  getMedia(){
+    this.http.get(this.url+"/media").subscribe((res:any)=>{
+      //console.log(res);
+      this.medias = res;
+      // if(this.medias!=null){
+      // }else{
+      //   alert("Espace vide");
+      // }
+    });
+  }
+
+  deleteMedia(id :any) {
+     this.dataService.deleteMedia(id).subscribe(
+      (res:any) => {
+      alert("Souhaitez-vous supprimer ?");
+      this.getMedia();
+    })
+  }
+
+  openEdit(data=null) {
+    // this.form.controls['title'].setValue(media.title);
+    // this.form.controls['texte'].setValue(media.texte);
+    // this.form.controls['url_video'].setValue(media.url_video);
+    // this.form.controls['pays'].setValue(media.pays);
+    // this.form.controls['categories'].setValue(media.categories);
+    // this.form.controls['image'].setValue(media.image);
+    // this.showForm = true;
+    // if(data){
+    //   this.title = data.title;
+    //   this.texte = data.texte;
+    //   this.url_video = data.url_video;
+    //   this.pays = data.pays;
+    //   this.categories = data.categories;
+    //   this.image = data.image;
+    // }
+
+
+  };
 
 
 
