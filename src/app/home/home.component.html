@@ -1,25 +1,55 @@
 <app-header class="header"></app-header>
 <app-carousel class="carouseel"></app-carousel>
 <div class="container">
+<div class="row">
+  <div class="col-sm-3 mt-0 mb-3">
+    <select class="form-select" id="scrolbar" (change)="filterCategory($event)">
+      <option value="Variété Musicale" class="navbar-nav nav-link" selected hidden >Variété Musicale</option>
+       <option value="{{ categorie.id }}" *ngFor="let categorie of categories" class="dropdown-item" >
+         {{ categorie.name }}
+       </option>
+   </select>
+  </div>
+  <div class="col-sm-3 mt-0 mb-3" >
+    <select class="form-select" id="scrolbar" (change)="filterContinent($event)">
+      <option value="Continent" class="navbar-nav nav-link" selected hidden >Continent</option>
+       <option value="{{ pay.id }}" *ngFor="let pay of pays" class="dropdown-item" >
+         {{ pay.name }}
+       </option>
+   </select>
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-lg-8">
   <div class="row">
-  <div class="col-lg-7">
-  <div class="row">
-    <div class="col-md-4 mb-5" *ngFor="let media of medias | paginate: { itemsPerPage: 6, currentPage: pages }">
+
+    <div class="col-md-4 mb-5" *ngFor="let medias of media | filter:searchKey:'title' | paginate: { itemsPerPage: 6, currentPage: pages }">
       <figure
         action=""
         class="snip1374 hover homeCard"
         method="POST"
         enctype="multipart/form-data">
-        <a href="" target="_self">
-          <img src="{{media.image}}" class="card-img-top img-fluid" />
+        <a
+         target="_self"
+         class="nav-link active"
+         target="_self"
+         [routerLink]="['/videoyoutube']"
+         routerLinkActive="router-link-active"
+         aria-current="page"
+         >
+          <img src="{{medias.image}}" class="card-img-top img-fluid" data-bs-target="#exampleModalVideo" type="button" data-bs-toggle="modal"  />
         </a>
-        <div class="time">
+
+        <div class="time  mt-2">
           <img
             src="../../assets/icon/icons8-horloge-64.png"
             height="18px"
             width="18px"
           />
-          {{ media.created_at | date:'dd/MM/yy' }}
+          {{ medias.created_at | date:'dd/MM/yy' }}
           <div class="" style="display: inline-flex;">
             <div>
               <img
@@ -53,7 +83,7 @@
             <div class="counter">00</div>
           </div>
           <h6 class="titleClip">
-            {{ media.title }}
+            {{ medias.title }}
          </h6>
         </div>
 
@@ -68,12 +98,15 @@
         </a>
       </div>
     </div>
-    <div class="col-md-12 text-center"></div>
+
+    <div class="col-md-12 mb-4 text-center">
+      <button type="button" class="btn btn-primary" *ngFor="let medias of media | paginate: { itemsPerPage: 6, currentPage: pages }"> {{ medias.title }}</button>
+    </div>
   </div>
 </div>
-<div class="col-lg-1"></div>
-<div class="col-lg-4">
-  <div class="card mb-2 homeCard" style="max-width: 540px;" *ngFor="let activitie of activities">
+
+<div class="col-lg-4 mb-1">
+  <div class="card mb-2 homeCard" *ngFor="let activitie of activities | filter:searchKey:'title' | paginate: { itemsPerPage: 6, currentPage: pages }">
    <div class="row">
      <div class="col-md-6">
        <img src="{{activitie.snippet.thumbnails.high.url}}" class="img-fluid rounded-start" alt="..."
@@ -95,12 +128,11 @@
           {{ activitie.snippet.publishedAt | date:'dd/MM/yy' }}</p>
 
      </div>
+    </div>
    </div>
   </div>
  </div>
-
 </div>
 
-</div>
 <pagination-controls (pageChange)="pages = $event"></pagination-controls>
 

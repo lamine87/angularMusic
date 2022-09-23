@@ -14,17 +14,27 @@ import { Media } from '../models/media';
 })
 
 export class HeaderComponent implements OnInit {
-  data: any;
   private url = 'http://127.0.0.1:8000/api';
+  data: any;
   pays!:Pays[];
   selectedPays!: Pays;
   // datas!:Media[];
+
+  public media : any[] = []; //
+  // public filterCategory : any
+  public totalItem : number = 0;
+  public searchTerm !: string;
 
   categories!:Categories[];
   selectedCategorie!: Categories;
 
   loggedIn:boolean = false;
-  constructor(private http:HttpClient, private dataService:DataService) {}
+
+
+  constructor(
+    private http:HttpClient,
+    private dataService: DataService
+    ) {}
 
 
   showPays(p :Pays){
@@ -34,31 +44,30 @@ export class HeaderComponent implements OnInit {
     this.selectedCategorie = cat;
   }
 
+  filterCategory(event:any){
+    let value = event.target.value;
+    console.log(value);
+    this.getCatMedia(value)
+  }
+
+  getCatMedia(id:any){
+    this.dataService.getMediaByCategorie(id).subscribe((res:any) =>{
+      this.media = res.media;
+      console.log(id)
+    })
+  }
+
 
 
   ngOnInit(): void {
-    this.http.get(this.url+"/pays").subscribe((res:any)=>{
-      this.pays = res.pays;
-    });
 
+   }
 
-    this.http.get(this.url+"/categorie").subscribe((res:any)=>{
-      //console.log(res);
-      this.categories = res.categorie;
-    });
-
-
-
+  search(event:any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    console.log(this.searchTerm);
+    this.dataService.search.next(this.searchTerm);
   }
 
-  getMediaSearch(title: any){
-    const keyword = title.target.value;
-    // console.log(keyword)
-    const search = this.dataService.getSearchTitle(keyword).then(response =>
-      {
-        this.data = response;
-        console.log(this.data);
-      })
-  }
 
 }

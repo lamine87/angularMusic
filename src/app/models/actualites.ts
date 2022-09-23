@@ -1,7 +1,10 @@
-export interface Actualites {
-  url_video: string,
-  texte: string,
-  title: string,
-  image: string,
-  created_at: string
+export class Actualites {
+  id: number= 0;
+  url_video: string='';
+  texte:  string='';
+  title:  string='';
+  image: string='';
+  pays:  string='';
+  categories: string='';
+  created_at: string='';
 }

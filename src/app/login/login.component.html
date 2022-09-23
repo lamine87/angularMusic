@@ -1,34 +1,100 @@
 <app-header class="header"></app-header>
-<section class="vh-100 gradient-custom">
+<section class="vh-80 gradient-custom">
   <div class="container py-2 h-40" >
     <div class="row d-flex justify-content-center align-items-center h-20">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-3 text-center">
-            <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-            <div class="mb-md-5 mt-md-4 pb-5">
+            <form (submit)="loginUser($event)">
+            <div class="mb-md-2 mt-md-2 pb-4">
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-3">Veuillez saisir votre identifiant et votre mot de passe !</p>
+              <p class="text-white-50 mb-1">Veuillez saisir votre identifiant et votre mot de passe !</p>
 
               <div class="form-outline form-white mb-2">
-                <input type="email" id="typeEmailX" placeholder="Email" class="form-control form-control-lg" name="email" ngModel/>
-                <label class="form-label" for="typeEmailX" >Email</label>
+                <input type="email" id="email" placeholder="Nom" class="form-control form-control-lg" name="email"/>
+                <label class="form-label" >Email</label>
               </div>
 
-              <div class="form-outline form-white mb-2">
-                <input type="password" id="typePasswordX" placeholder="Mot de passe" class="form-control form-control-lg" name="password" ngModel/>
-                <label class="form-label" for="typePasswordX" >Password</label>
+              <div class="form-outline form-white mb-1">
+                <input type="password" id="password" placeholder="Mot de passe" class="form-control form-control-lg" name="password"/>
+                <label class="form-label" >Password</label>
               </div>
 
-              <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Mot de passe oublié ?</a></p>
-
-              <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+              <p class="small mb-1 pb-lg-2">
+                <a class="text-white-50" href="#!">Mot de passe oublié ?</a>
+              </p>
+              <button class="btn btn-outline-light btn-lg px-4" type="submit">Login</button>
 
             </div>
-
+            <!-- Button trigger modal -->
+            <div class="mb-3">
+              <div class="mb-2">Vous n'avez pas de compte ?</div>
+              <div>
+                <button class="btn btn-outline-light px-3 text-blue-50 fw-bold"
+                id="btnRegister" data-bs-target="#exampleModalRegister" type="button" data-bs-toggle="modal" >
+                S'inscrire
+              </button>
+              </div>
+            </div>
             <div>
-              <p class="mb-0">Vous n'avez pas de compte ? <a href="#!" class="text-blue-50 fw-bold ">S'inscrire</a>
-              </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Modal Register</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                       <!-- le enctype="multipart/form-data" sert a prendre en compte l'input de type file -->
+
+                    <form (ngSubmit)="onSubmitRegister()" [formGroup]="formRegister" enctype="multipart/form-data">
+                      <div class="modal-body">
+                        <div class="form-group mb-2">
+                          <label class="form-label" for="name">Nom *</label>
+                          <input type="text" name="name" id="name" class="form-control" placeholder="Nom *" formControlName="name">
+                        </div>
+                          <div class="form-group mb-2">
+                              <label class="form-label" for="email">Email *</label>
+                              <input type="text" name="email" id="email" class="form-control" placeholder="Email *" formControlName="email">
+                          </div>
+                          <div class="form-group mb-2">
+                              <label class="form-label" for="password">Password *</label>
+                              <input type="password" name="password" id="password" class="form-control" placeholder="Password *" formControlName="password" >
+                          </div>
+
+                          <div class="form-group mb-2">
+                            <label class="form-label" for="confirmed">Password confirm *</label>
+                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password *" formControlName="password_confirmation" >
+                         </div>
+                         <div class="form-group mb-2">
+                          <label class="form-label" for="lien_facebook">Lien Facebook *</label>
+                          <input type="text" name="lien_facebook" id="lien_facebook" class="form-control" placeholder="https://fr-fr.facebook.com *" formControlName="lien_facebook" >
+                        </div>
+                        <div class="form-group mb-2">
+                          <label class="form-label" for="lien_instagram">Lien Instagram *</label>
+                          <input type="text" name="lien_instagram" id="lien_instagram" class="form-control" placeholder="https://www.instagram.com *" formControlName="lien_instagram" >
+                      </div>
+                         <div class="form-group">
+                          <label class="form-label" for="avatar">Profile Photo *</label>
+                            <input type="file" name="avatar" id="avatar" class="form-control" formControlName="avatar"
+                              [ngClass]="{ 'is-invalid': submitted && f['avatar'].errors }"
+                              (change)="uploadImage($event)">
+                          <div *ngIf="submitted && f['avatar'].errors" class="invalid-feedback">
+                            <div *ngIf="f['avatar'].errors['required']">Image required</div>
+                            </div>
+                          </div>
+
+                      <div class="modal-footer">
+                          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                          <button type="submit" id="submit" class="btn btn-primary">Envoyer</button>
+                          </div>
+                        </div>
+                      </form>
+                  </div>
+                  </div>
+                </div>
               <p>Ou inscrivez-vous avec :</p>
               <button type="button" class="btn btn-link btn-floating mx-1">
                  <img src="../../assets/icon/facebook.png" height="25px" width="25px" frameborder="0" />
@@ -45,6 +111,7 @@
               <button type="button" class="btn btn-link btn-floating mx-1">
                 <img src="../../assets/icon/github.png" height="25px" width="25px" frameborder="0"/>
               </button>
+            </div>
             </div>
           </form>
           </div>

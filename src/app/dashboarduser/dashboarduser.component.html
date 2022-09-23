@@ -196,7 +196,7 @@
 
 
               <li class="nav-item dropdown">
-                <a class="btn btn-primary" (click)="logoutUser()"  data-bs-toggle="dropdown">
+                <a class="btn btn-primary"   data-bs-toggle="dropdown">
                   Deconnexion
                 </a>
               </li>
@@ -234,7 +234,7 @@
                   <div class="modal-body">
                       <div class="form-group mb-2">
                           <label class="form-label" for="title">Titre</label>
-                          <input type="text" name="title" id="title" class="form-control" placeholder="Titre" formControlName="title" required>
+                          <input type="text" name="title" id="title" class="form-control" placeholder="Titre" formControlName="title" required required min="3">
                       </div>
                       <div class="form-group mb-2">
                           <label class="form-label" for="texte">Texte</label>
@@ -261,15 +261,14 @@
                            <option [ngValue]="null"  disabled >Select Continent</option>
                             <option *ngFor="let categorie of categories" class="dropdown-item"
                             [ngValue]="categorie.id"  name="categories" id="categories">
-                              {{ categorie.name }}
-                            </option>
+                              {{ categorie.name }}</option>
                       </select>
                     </div>
 
                       <div class="form-group">
                         <label class="form-label" for="image">Image</label>
                           <div *ngIf="showImage">
-                            <img [src]=""  class="tableDashboard" />
+                            <img *ngFor="let medias of media" [src]="medias.image"  class="tableDashboard" />
                            </div>
 
                           <input type="file" name="image" id="image" class="form-control" formControlName="image"
@@ -323,7 +322,7 @@
                             <i class="align-middle" data-feather="trash"></i>
                           </button>
 
-                          <button (click)="editMedia(medias)" class="btn btn-primary ms-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <button (click)="editMedia(media)" class="btn btn-primary ms-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <img src="../../assets/icon/edit1.png" class="deleteEdit" />
                             <i class="align-middle" data-feather="edit-2"></i>
                           </button>
@@ -334,3 +333,4 @@
     </main>
   </div>
 </div>
+

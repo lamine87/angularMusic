@@ -12,19 +12,20 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { ActualiteComponent } from './actualite/actualite.component';
 import { PaysComponent } from './pays/pays.component';
 import { CategorieComponent } from './categorie/categorie.component';
-import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormdashboardComponent } from './formdashboard/formdashboard.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DataService } from './service/data.service';
+import { FilterPipe } from './shared/filter.pipe';
+import { AuthGuard } from './auth.guard';
+import { LogoutComponent } from './logout/logout.component';
+import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
+import { DashboarduserComponent } from './dashboarduser/dashboarduser.component';
+import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
 
-
-//import { AuthenticationService } from './service/authentication.service';
-//import { Ng2SearchPipeModule } from 'ng2-search-filter';
 // const appRoutes: Routes = [
 //   { path: '', component:HomeComponent}
 // ]
@@ -40,15 +41,14 @@ import { DataService } from './service/data.service';
     ActualiteComponent,
     PaysComponent,
     CategorieComponent,
-    SearchComponent,
     LoginComponent,
     DashboardComponent,
-    FormdashboardComponent,
+    FilterPipe,
+    LogoutComponent,
+    VidioyoutubeComponent,
+    DashboarduserComponent,
+    UpdatemediaComponent,
 
-
-
-    //AuthenticationService
-    //Ng2SearchPipeModule
 
   ],
   imports: [
@@ -56,7 +56,18 @@ import { DataService } from './service/data.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule,
+    RouterModule.forRoot([
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'logout',
+        component: LogoutComponent,
+        // canActivate: [AuthGuard]
+      }
+    ]),
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -64,7 +75,7 @@ import { DataService } from './service/data.service';
     ToastrModule.forRoot(),
 
   ],
-  providers: [DataService],
+  providers: [DataService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

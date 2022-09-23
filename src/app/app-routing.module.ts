@@ -8,10 +8,11 @@ import { PaysComponent } from './pays/pays.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from './service/auth.guard';
-import { SearchComponent } from './search/search.component';
-import { FormdashboardComponent } from './formdashboard/formdashboard.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './auth.guard';
+import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
+import { DashboarduserComponent } from './dashboarduser/dashboarduser.component';
+import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
 
 
 const routes: Routes = [
@@ -22,11 +23,14 @@ const routes: Routes = [
   { path: 'pays', component: PaysComponent },
   { path: 'categorie', component: CategorieComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'search', component: SearchComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'addmedia', component: FormdashboardComponent },
+  { path: 'addmedia', component: DashboardComponent },
+  // { path: 'update/media/', component: DashboardComponent, canActivate:[AuthGuard] },
+  { path: 'logout', component: LogoutComponent, canActivate:[AuthGuard] },
+  { path: 'videoyoutube', component: VidioyoutubeComponent },
+  // { path: 'show/user', component: DashboarduserComponent },
   { path: "", redirectTo: "/home", pathMatch:"full" },
-  // { path: "login", redirectTo: "/dashboard", pathMatch:"full" } /add/media
+  // { path: "login", redirectTo: "/dashboard", pathMatch:"full" }
 ];
 
 @NgModule({
