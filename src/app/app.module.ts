@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ActualiteComponent } from './actualite/actualite.component';
 import { PaysComponent } from './pays/pays.component';
-import { CategorieComponent } from './categorie/categorie.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,7 +39,6 @@ import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
     CarouselComponent,
     ActualiteComponent,
     PaysComponent,
-    CategorieComponent,
     LoginComponent,
     DashboardComponent,
     FilterPipe,

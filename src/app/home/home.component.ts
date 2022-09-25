@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   pages: number = 1;   // Pagination
 
   // public activities: any;
-  public media : any ;
+  public media : any[]= [];
   searchKey:string ="";
   public totalItem : number = 0;
   public searchTerm !: string;
@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.http.get(this.url+"/categorie").subscribe((res:any)=>{
       //console.log(res);
       this.categories = res.categorie;
@@ -67,19 +66,32 @@ export class HomeComponent implements OnInit {
 
     this.dataService.search.subscribe((val:any)=>{
       this.searchKey = val;
+    });
+
+  }
+
+  // Get media by User
+  getUserMedia(id:any){
+    this.dataService.filterMediaByUser(id).subscribe((res:any) =>{
+      this.media = res;
+      console.log(id)
+      console.log(this.url+"/tag/"+id)
     })
   }
 
+  // Filter media by categorie
   filterCategory(event:any){
     let value = event.target.value;
     console.log(value);
     this.getCatMedia(value)
   }
 
+// Get media by categorie
   getCatMedia(id:any){
     this.dataService.getMediaByCategorie(id).subscribe((res:any) =>{
-      this.media = res.media;
+      this.media = res;
       console.log(id)
+      console.log(this.url+"/categorie/media/"+id)
 
     })
   }
@@ -92,13 +104,12 @@ export class HomeComponent implements OnInit {
 
   getMediaByContinent(id:any){
     this.dataService.mediaContinent(id).subscribe((res:any) =>{
-      this.media = res.pays;
-      console.log(id)
-      console.log(this.url+"/pays/media/"+id)
+      this.media = res;
+      // console.log(id)
+      // console.log(this.url+"/pays/media/"+id)
 
     })
   }
-
 
 
 }

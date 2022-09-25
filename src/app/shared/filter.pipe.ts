@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
       return value;
     }
     value.forEach((a:any)=>{
-      if(a[propName].trim().toLowerCase().includes(filterString.toLowerCase())){
+      if(a[propName]?.trim().toLowerCase().includes(filterString.toLowerCase())){
         result.push(a);
       }
     });

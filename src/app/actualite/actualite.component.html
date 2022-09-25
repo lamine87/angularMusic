@@ -1,33 +1,65 @@
-<app-header class="header"></app-header>
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home']">YoMusic</a>
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Concert</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Cinéma</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Théâtre</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
 <app-carousel class="carouseel"></app-carousel>
 <div class="container">
   <div class="row">
-    <div class="col-md-6" *ngFor="let actualite of actualites">
+    <div class="col-md-4 mb-3" *ngFor="let actualite of actualites">
+      <div class="text-center">
+        <h5 class="mb-3">{{actualite.title}}</h5>
+      </div>
       <figure
         action=""
         class="snip1374 hover"
         method="POST"
         enctype="multipart/form-data">
-        <a href="" target="_self">
+        <a href="" target="_self" class="mt-2">
           <img src="{{actualite.image}}" class="card-img-top img-fluid" />
         </a>
+
       </figure>
 
-      <div class="time">
-        <img
-            src="../../assets/icon/icons8-horloge-64.png"
-            height="18px"
-            width="18px"
-          />
-          {{ actualite.created_at | date:'dd/MM/yy' }}
 
           <div class="mt-0" style="display: inline-flex;">
-            <div>
-              <img
-                src="../../assets/icon/icon-partager-24.png"
-                class="reseaux"
-                width="15px"
-              />
+            <div class="date">
+                <img
+                src="../../assets/icon/icons8-horloge-64.png"
+                height="18px"
+                width="18px"
+                 />
+                  {{ actualite.created_at | date:'dd/MM/yy' }}
             </div>
             <div>
               <img
@@ -44,27 +76,10 @@
               />
             </div>
 
-            <div id="likeBouton">
-              <img
-                src="../../assets/icon/dislike3.png"
-                class="reseaux"
-                width="16px"
-              />
-            </div>
-
-
           </div>
-          <h5 class="titleClip">
-            {{ actualite.title }}
-          </h5>
+          <div class="texte">
+            <h6><strong> {{actualite.texte}}</strong></h6>
+          </div>
+        </div>
       </div>
-
-
-      <p class="textClip">
-        {{ actualite.texte }}
-     </p>
     </div>
-    <div class="col-md-12 text-center"></div>
-  </div>
-</div>
-

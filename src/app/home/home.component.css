@@ -36,8 +36,43 @@
   -webkit-box-orient: vertical;
 }
 
+.navbar-home{
+  color:  #00ffeb;
+  text-decoration: none;
+  margin-right: 10px;
+}
 
+.navbar-home:hover{
+  color: #e20a3f;
+}
 
+.navbar-dark{
+  color:  #00ffeb;
+  background-color: hsla(0, 0%, 7%, 0.635) !important;
+}
+
+.dropdown-item {
+  background-color: hsla(0, 0%, 7%, 0.635) !important;
+}
+
+#scrolbar{
+  color:  #00ffeb;
+  background-color: hsla(0, 0%, 7%, 0.635) !important;
+  text-decoration: none;
+  border: solid transparent;
+}
+
+#scrolbar:hover{
+  color: #e20a3f;
+}
+
+#categories{
+  color: white;
+}
+
+#pays{
+  color: white;
+}
 
 /* .time{
   display: inline-block;

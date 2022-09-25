@@ -35,7 +35,8 @@ export class HeaderComponent implements OnInit {
     private http:HttpClient,
     private dataService: DataService
     ) {}
-
+  ngOnInit(): void {
+  }
 
   showPays(p :Pays){
     this.selectedPays = p;
@@ -44,24 +45,6 @@ export class HeaderComponent implements OnInit {
     this.selectedCategorie = cat;
   }
 
-  filterCategory(event:any){
-    let value = event.target.value;
-    console.log(value);
-    this.getCatMedia(value)
-  }
-
-  getCatMedia(id:any){
-    this.dataService.getMediaByCategorie(id).subscribe((res:any) =>{
-      this.media = res.media;
-      console.log(id)
-    })
-  }
-
-
-
-  ngOnInit(): void {
-
-   }
 
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;

@@ -1,4 +1,3 @@
-
 .navbar-nav .nav-link{
   color: #00ffeb;
 }
@@ -24,7 +23,7 @@ a.dropdown-item:hover{
 }
 
 #scrolbar{
-  color:  #00ffeb;;
+  color:  #00ffeb;
   background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity));
   /* overflow-y: scroll;
   scrollbar-width: thin; */

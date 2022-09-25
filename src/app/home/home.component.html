@@ -1,25 +1,46 @@
 <app-header class="header"></app-header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-home" [routerLink]="['/home']">Home</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent2"
+      aria-controls="navbarSupportedContent2"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent2">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item mt-2">
+          <select class="form-select" id="scrolbar" (change)="filterCategory($event)">
+            <option value="Variété Musicale" class="nav-link active" selected hidden>Variété Musicale</option>
+             <option value="{{ categorie.id }}" *ngFor="let categorie of categories" class="dropdown-item" id="categories">
+               {{ categorie.name }}
+             </option>
+         </select>
+        </li>
+        <li class="nav-item mt-2">
+          <select class="form-select" id="scrolbar" (change)="filterContinent($event)">
+            <option value="Continent" class="nav-link active" selected hidden>Continent</option>
+             <option value="{{ pay.id }}" *ngFor="let pay of pays" class="dropdown-item"  id="pays">
+               {{ pay.name }}
+             </option>
+         </select>
+      </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
 <app-carousel class="carouseel"></app-carousel>
 <div class="container">
-<div class="row">
-  <div class="col-sm-3 mt-0 mb-3">
-    <select class="form-select" id="scrolbar" (change)="filterCategory($event)">
-      <option value="Variété Musicale" class="navbar-nav nav-link" selected hidden >Variété Musicale</option>
-       <option value="{{ categorie.id }}" *ngFor="let categorie of categories" class="dropdown-item" >
-         {{ categorie.name }}
-       </option>
-   </select>
-  </div>
-  <div class="col-sm-3 mt-0 mb-3" >
-    <select class="form-select" id="scrolbar" (change)="filterContinent($event)">
-      <option value="Continent" class="navbar-nav nav-link" selected hidden >Continent</option>
-       <option value="{{ pay.id }}" *ngFor="let pay of pays" class="dropdown-item" >
-         {{ pay.name }}
-       </option>
-   </select>
-  </div>
-</div>
-
 
 <div class="row">
 
@@ -99,8 +120,8 @@
       </div>
     </div>
 
-    <div class="col-md-12 mb-4 text-center">
-      <button type="button" class="btn btn-primary" *ngFor="let medias of media | paginate: { itemsPerPage: 6, currentPage: pages }"> {{ medias.title }}</button>
+    <div class="col-md-12 mb-4 text-center" >
+      <button (click)="getUserMedia(medias.user_id)" type="button" class="btn btn-primary" *ngFor="let medias of media | paginate: { itemsPerPage: 6, currentPage: pages }"> {{ medias.title }}</button>
     </div>
   </div>
 </div>

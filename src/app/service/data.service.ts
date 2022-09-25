@@ -42,9 +42,11 @@ export class DataService {
   setLoggedIn(value: boolean){
     this.loggedInStatus = value;
   }
+
   get isLoginIn(){
     return this.loggedInStatus;
   }
+
   getUserDetails( email:any, password:any) {
     // Post thes email and password to api server user info if correct
     return this.http.post<myData>(this.url+"/login",  {
@@ -54,19 +56,24 @@ export class DataService {
 
     )
   }
-
+  // Get media by categorie
   getMediaByCategorie(id:any) {
     return this.http.get(this.url+"/categorie/media/"+id)
   }
+  
+ // Filter media by user (tag)
+  filterMediaByUser(id:any) {
+    return this.http.get(this.url+"/tag/"+id)
+  }
+
+ // Get media by continent
   mediaContinent(id:any) {
     return this.http.get(this.url+"/pays/media/"+id)
   }
 
-
-
-  // getMediaUser(){
-  //   return this.http.get(this.url+'/show/user');
-  // }
+  tagUser(id:any) {
+    return this.http.get(this.url+"/tag/"+id)
+  }
 
    // user logout
    logout() {

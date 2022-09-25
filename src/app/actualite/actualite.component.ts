@@ -23,9 +23,8 @@ export class ActualiteComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get(this.url+"/actualite").subscribe((res:any)=>{
-     // console.log(res);
-
-      this.actualites = res.actualites;
+     console.log(res);
+      this.actualites = res;
 
     });
   }
