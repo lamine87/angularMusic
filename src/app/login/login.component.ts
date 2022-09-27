@@ -55,20 +55,21 @@ export class LoginComponent implements OnInit {
 
  //  authentication user
     loginUser(event: any){
-      // event.preventDefault();
+      event.preventDefault();
       const target = event.target
       const email = target.querySelector('#email').value
       const password = target.querySelector('#password').value
-      this.dataService.getUserDetails(email, password).subscribe((data:any) => {
-        console.log(data);
-        localStorage.setItem('user', JSON.stringify(data));
-        // if (data.success) {
+      this.dataService.getUserDetails(email, password).subscribe((res:any) => {
+        console.log(res);
+        localStorage.setItem('user', JSON.stringify(res));
+        if (res.status == true) {
           this.router.navigate(['/dashboard']);
-          // this.dataService.setLoggedIn(true);
-        // }else{
-          // window.alert(data.message)
-          // this.router.navigate(['/login']);
-        // }
+        }else{
+          window.alert(res.message)
+          this.router.navigate(['/login']);
+
+        }
+
       })
       console.log(email, password)
     }
@@ -118,7 +119,7 @@ export class LoginComponent implements OnInit {
           let ref = document.getElementById('cancel');
           ref?.click();
           this.formRegister.reset();
-          this.router.navigate(['/show/user']);
+          this.router.navigate(['/dashboard']);
         } else {
           this.toastr.error(JSON.stringify(this.data.message), '', {
             timeOut: 2000,

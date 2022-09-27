@@ -12,7 +12,7 @@ import { AuthGuard } from './auth.guard';
 import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
 import { DashboarduserComponent } from './dashboarduser/dashboarduser.component';
 import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
-
+import { SecureComponent } from './secure/secure.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,14 +21,17 @@ const routes: Routes = [
   { path: 'actualite', component: ActualiteComponent },
   { path: 'pays', component: PaysComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'addmedia', component: DashboardComponent },
   // { path: 'update/media/', component: DashboardComponent, canActivate:[AuthGuard] },
   { path: 'logout', component: LogoutComponent, canActivate:[AuthGuard] },
   { path: 'videoyoutube', component: VidioyoutubeComponent },
-  // { path: 'show/user', component: DashboarduserComponent },
   { path: "", redirectTo: "/home", pathMatch:"full" },
-  // { path: "login", redirectTo: "/dashboard", pathMatch:"full" }
+  {
+    path: 'dashboard',
+    component: DashboardComponent, canActivate:[AuthGuard]
+  },
+  { path: 'secure', component: SecureComponent },
+
 ];
 
 @NgModule({

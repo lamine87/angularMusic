@@ -9,6 +9,8 @@ import { Pays } from '../models/pays';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { DataService } from '../service/data.service';
 import { ToastrService } from 'ngx-toastr';
+import { Spectacles } from '../models/spectacles';
+import { Actualites } from '../models/actualites';
 // import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 
@@ -26,19 +28,30 @@ export class DashboardComponent implements OnInit {
     data: any;
     submitted = false;
     form!: FormGroup;
-    showForm= false;
+    formActu!: FormGroup;
+    showForm = false;
     showPostMedia!: boolean;
     showUpdateMedia!: boolean;
+
+    showPostActu!: boolean;
+    showUpdateActu!: boolean;
     showImage!: boolean;
     requiredImage!: boolean;
+    showActuImage!: boolean;
+    requiredActuImage!: boolean;
 
     media!:Media[];
     selectedMedia!: Media;
     mediaObj = new Media();
 
+    actualites!:Actualites[];
+    selectedActu!: Actualites;
+    actuObj = new Actualites();
+
     categories!:Categories[];
     selectedCategorie!: Categories;
 
+    spectacles!: Spectacles[];
     pays!:Pays[];
     selectedPays!: Pays;
 
@@ -50,6 +63,7 @@ export class DashboardComponent implements OnInit {
     private http:HttpClient,
     private router: Router,
     private formBuilder: FormBuilder,
+    private formActuBuilder: FormBuilder,
     private dataService: DataService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
@@ -90,9 +104,14 @@ export class DashboardComponent implements OnInit {
       this.selectedMedia = m;
     }
 
+    showDashboardActu(m :Actualites){
+      this.selectedActu = m;
+    }
+
     ngOnInit(): void {
       this.getMedia();
       this.createForm();
+      this.createFormActu();
       // this.editForm();
 
       this.http.get(this.url+"/categorie").subscribe((res:any)=>{
@@ -103,27 +122,31 @@ export class DashboardComponent implements OnInit {
       this.http.get(this.url+"/pays").subscribe((res:any)=>{
         this.pays = res.pays;
       });
-
+      this.http.get(this.url+"/spectacles").subscribe((res:any)=>{
+        //console.log(res);
+        this.spectacles = res;
+      });
 
     }
+    // get erreur media form
     get f() {
       return this.form.controls;
     }
 
     // Afficher media
     getMedia(){
-      this.http.get(this.url+"/media").subscribe((res:any)=>{
+      this.http.get(this.url+"/media/by/user").subscribe((res:any)=>{
         //console.log(res);
         this.media = res;
-
       });
     }
 
     // Delete media
     deleteMedia(id :any) {
+      confirm("Souhaitez-vous supprimer ?");
       this.dataService.deleteMedia(id).subscribe(
         (res:any) => {
-        alert("Souhaitez-vous supprimer ?");
+        // confirm("Souhaitez-vous supprimer ?");
         this.getMedia();
       })
     }
@@ -146,7 +169,7 @@ export class DashboardComponent implements OnInit {
       this.files = event.target.files[0];
       console.log(this.files);
     }
-
+// send form media
     onSubmit() {
       this.submitted = true;
       // this.requiredImage = true;
@@ -196,6 +219,7 @@ export class DashboardComponent implements OnInit {
       this.showImage= false;
       this.requiredImage = true;
     }
+
 
     // Get formulaire edit media
     editMedia(media:any,) {
@@ -257,6 +281,136 @@ export class DashboardComponent implements OnInit {
         this.getMedia();
       });
       }
+
+      // get erreur actualite form
+      get fa() {
+        return this.formActu.controls;
+      }
+
+     // Get form media
+    createFormActu() {
+      this.formActu = this.formActuBuilder.group({
+        title: [''],
+        texte: [''],
+        url_video: [''],
+        spectacles: [''],
+        image: [''],
+      });
+    }
+
+    // Chargement d'image actualite
+    uploadImageActu(event: any) {
+      this.files = event.target.files[0];
+      console.log(this.files);
+    }
+    // send form actualite
+     actuOnSubmit() {
+      this.submitted = true;
+      // this.requiredActuImage = true;
+      if (this.formActu.invalid) {
+        return;
+      }
+      // Envoie de media
+      const formDataActu = new FormData();
+      formDataActu.append('title', this.formActu.value.title);
+      formDataActu.append('texte', this.formActu.value.texte);
+      formDataActu.append('spectacles', this.formActu.value.spectacles);
+      formDataActu.append('url_video', this.formActu.value.url_video);
+      formDataActu.append("image", this.files, this.files.name);
+
+      this.dataService.postActualite(formDataActu).subscribe((res) => {
+        this.data = res;
+        console.log(this.data);
+        console.log(res);
+        if(this.data.status == true) {
+          this.toastr.success(JSON.stringify(this.data.message), '', {
+            timeOut: 2000,
+            progressBar: true,
+          });
+
+          // alert("Envoyer avec succes")
+          let ref = document.getElementById('cancel');
+          ref?.click();
+          this.formActu.reset();
+
+        } else {
+          this.toastr.error(JSON.stringify(this.data.message), '', {
+            timeOut: 2000,
+            progressBar: true,
+          });
+        }
+        this.submitted = false;
+        // this.getMedia();
+      });
+
+    }
+  // Button Edit or Add
+    clickPostOrUpdateActu(){
+      this.formActu.reset();
+      this.showPostActu = true;
+      this.showUpdateActu = false;
+      this.showActuImage = false;
+      this.requiredActuImage = true;
+    }
+    // Get formulaire edit media
+    editActu(data:any,) {
+      this.showPostActu = false;
+      this.showUpdateActu = true;
+      this.showActuImage = true;
+      this.requiredActuImage = false;
+
+      this.actuObj.id = data.id
+      this.formActu.controls['title'].setValue(data.title);
+      this.formActu.controls['texte'].setValue(data.texte);
+      this.formActu.controls['url_video'].setValue(data.url_video);
+      this.formActu.controls['spectacles'].setValue(data.spectacles);
+      this.formActu.controls['image'].setValue(data.files);
+
+    };
+
+          // Envoie après modification de media
+    postEditActu() {
+      this.submitted = true;
+
+      if (this.formActu.invalid) {
+        return;
+      }
+      const formDataActu = new FormData();
+      // let formData: any = {};
+      formDataActu.append('title', this.form.value.title);
+      formDataActu.append('texte', this.form.value.texte);
+      formDataActu.append('spectacles', this.form.value.spectacles);
+      formDataActu.append('url_video', this.form.value.url_video);
+      formDataActu.append("image", this.files, this.files.name);
+
+      this.dataService.updateActu(formDataActu,this.actuObj.id).subscribe((res) => {
+        console.log(this.actuObj);
+        console.log(this.actuObj.id);
+        // this.data = res;
+        // console.log(this.categories);
+        // console.log(this.pays);
+        if(this.data.status = true) {
+          this.toastr.success(JSON.stringify(this.data.message), '', {
+            timeOut: 2000,
+            progressBar: true,
+          });
+
+          // alert("Envoyer avec succes")
+          let ref = document.getElementById('cancel');
+          ref?.click();
+          this.form.reset();
+
+        } else {
+          this.toastr.error(JSON.stringify(this.data.message), '', {
+            timeOut: 2000,
+            progressBar: true,
+          });
+        }
+        this.submitted = false;
+        // this.getMedia();
+      });
+      }
+
 
   }
 

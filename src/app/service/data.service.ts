@@ -8,12 +8,12 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { environment } from 'src/environments/environment.prod';
 import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { Youtube } from '../models/youtube';
-
+// import { FilterPipe } from '../shared/filter.pipe';
 
 interface myData {
   success:boolean;
   message:string;
-  // status:boolean
+  status:boolean
 }
 
 @Injectable({
@@ -60,7 +60,7 @@ export class DataService {
   getMediaByCategorie(id:any) {
     return this.http.get(this.url+"/categorie/media/"+id)
   }
-  
+
  // Filter media by user (tag)
   filterMediaByUser(id:any) {
     return this.http.get(this.url+"/tag/"+id)
@@ -91,7 +91,9 @@ export class DataService {
   // Send Media methode post
   postDataMedia(data:any) {
     const headers = new HttpHeaders();
+    localStorage.setItem('user', JSON.stringify(data));
     return this.http.post(this.url+"/addmedia", data, {
+
       headers: headers,
       withCredentials: true
     })
@@ -99,9 +101,9 @@ export class DataService {
 
   // Register 'Create new user'
   postRegister(data:any) {
-    const headers = new HttpHeaders();
+    // const headers = new HttpHeaders();
     return this.http.post(this.url+'/register', data,{
-      headers: headers
+      // headers: headers
     })
   }
 
@@ -114,10 +116,29 @@ export class DataService {
     }
     )
   }
+
   // Delete media
   deleteMedia(id: any){
     return this.http.post(this.url+'/destroy/media/'+id,{
     })
   }
 
+ // Send actualite methode post
+ postActualite(data:any) {
+  const headers = new HttpHeaders();
+  return this.http.post(this.url+"/add/actualite", data, {
+    headers: headers,
+    // withCredentials: true
+  })
+}
+
+  // updating Actualite
+  updateActu(data:any, id:number) {
+    const headers = new HttpHeaders();
+    return this.http.post(this.url+'/update/actualite/'+id,data,
+    {
+      headers: headers
+    }
+    )
+  }
 }

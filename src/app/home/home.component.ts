@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   // public activities: any;
   public media : any[]= [];
   searchKey:string ="";
-  public totalItem : number = 0;
+  // public totalItem : number = 0;
   public searchTerm !: string;
   pays!:Pays[];
 

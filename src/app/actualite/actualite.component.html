@@ -27,8 +27,13 @@
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm" (keyup)="search($event)"
+          class="form-control me-2"
+          placeholder="Search"
+          aria-label="Search"
+        />
       </form>
     </div>
   </div>
@@ -36,7 +41,7 @@
 <app-carousel class="carouseel"></app-carousel>
 <div class="container">
   <div class="row">
-    <div class="col-md-4 mb-3" *ngFor="let actualite of actualites">
+    <div class="col-md-4 mb-4" *ngFor="let actualite of actualites  | filter:searchKey:'title' | paginate: { itemsPerPage: 6, currentPage: pages }">
       <div class="text-center">
         <h5 class="mb-3">{{actualite.title}}</h5>
       </div>
@@ -83,3 +88,4 @@
         </div>
       </div>
     </div>
+    <pagination-controls (pageChange)="pages = $event"></pagination-controls>

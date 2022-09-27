@@ -18,11 +18,10 @@ export class HeaderComponent implements OnInit {
   data: any;
   pays!:Pays[];
   selectedPays!: Pays;
-  // datas!:Media[];
+
 
   public media : any[] = []; //
-  // public filterCategory : any
-  public totalItem : number = 0;
+  // public totalItem : number = 0;
   public searchTerm !: string;
 
   categories!:Categories[];

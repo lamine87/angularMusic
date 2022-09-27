@@ -24,6 +24,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
 import { DashboarduserComponent } from './dashboarduser/dashboarduser.component';
 import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
+import { SecureComponent } from './secure/secure.component';
 
 // const appRoutes: Routes = [
 //   { path: '', component:HomeComponent}
@@ -46,6 +47,7 @@ import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
     VidioyoutubeComponent,
     DashboarduserComponent,
     UpdatemediaComponent,
+    SecureComponent,
 
 
   ],
@@ -58,7 +60,7 @@ import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
       {
         path: 'dashboard',
         component: DashboardComponent,
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'logout',
