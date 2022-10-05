@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   data: any;
   submitted = false;
   formRegister!: FormGroup;
+  form!: FormGroup;
   login!:Login[];
   selectedDashboard!: Login;
   // email='';
@@ -50,28 +51,56 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
       this.createForm();
+      this.createFormLogin();
   }
 
+  createFormLogin() {
+    this.form = this.formBuilder.group({
+      email: [''],
+      password: ['']
+    });
+  }
 
- //  authentication user
-    loginUser(event: any){
-      event.preventDefault();
-      const target = event.target
-      const email = target.querySelector('#email').value
-      const password = target.querySelector('#password').value
-      this.dataService.getUserDetails(email, password).subscribe((res:any) => {
+    // loginUser(event: any){
+    //   event.preventDefault();
+    //   const target = event.target
+    //   const email = target.querySelector('#email').value
+    //   const password = target.querySelector('#password').value
+    //   this.dataService.getUserDetails(email, password).subscribe((res:any) => {
+    //     console.log(res);
+    //     localStorage.setItem('token', JSON.stringify(res));
+    //     if (res.status == true) {
+    //       this.router.navigate(['/dashboard']);
+    //     }else{
+    //       window.alert(res.message)
+    //       this.router.navigate(['/login']);
+    //     }
+
+    //   })
+    //   console.log(email, password)
+    // }
+
+    onSubmit(form:NgForm){
+      const email = form.value.email;
+      const password = form.value.password;
+      // const name = form.value.name;
+
+      console.log(email, password, name);
+
+      this.http.post(this.url+"/login", {
+        email: email,
+        password: password,
+
+      }).subscribe((res:any) => {
         console.log(res);
-        localStorage.setItem('user', JSON.stringify(res));
-        if (res.status == true) {
-          this.router.navigate(['/dashboard']);
-        }else{
-          window.alert(res.message)
-          this.router.navigate(['/login']);
+        localStorage.setItem('', JSON.stringify(res));
 
-        }
-
-      })
-      console.log(email, password)
+        // Redirect to dashboard
+        this.router.navigate(['/dashboard']);
+      },
+        err => {
+          console.log(err);
+        })
     }
 
     createForm() {

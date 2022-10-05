@@ -6,6 +6,8 @@ import { DataService } from '../service/data.service';
 import { Categories } from '../models/categories';
 import { Pays } from '../models/pays';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

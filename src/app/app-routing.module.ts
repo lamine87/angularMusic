@@ -10,7 +10,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
 import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
-import { DashboarduserComponent } from './dashboarduser/dashboarduser.component';
 import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
 import { SecureComponent } from './secure/secure.component';
 
@@ -28,7 +27,7 @@ const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch:"full" },
   {
     path: 'dashboard',
-    component: DashboardComponent, canActivate:[AuthGuard]
+    component: DashboardComponent
   },
   { path: 'secure', component: SecureComponent },
 

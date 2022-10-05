@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs';
 import { Media } from '../models/media';
 import { Observable, BehaviorSubject } from 'rxjs';
 // import { RouterModule, Routes } from '@angular/router';
@@ -47,9 +46,11 @@ export class DataService {
     return this.loggedInStatus;
   }
 
+
   getUserDetails( email:any, password:any) {
+
     // Post thes email and password to api server user info if correct
-    return this.http.post<myData>(this.url+"/login",  {
+    return this.http.post<myData>(this.url+"/login", {
       email,
       password
     }
@@ -101,9 +102,9 @@ export class DataService {
 
   // Register 'Create new user'
   postRegister(data:any) {
-    // const headers = new HttpHeaders();
+    const headers = new HttpHeaders();
     return this.http.post(this.url+'/register', data,{
-      // headers: headers
+      headers: headers
     })
   }
 

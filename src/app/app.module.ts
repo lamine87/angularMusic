@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule} from '@angular/common/http';
@@ -22,9 +22,10 @@ import { FilterPipe } from './shared/filter.pipe';
 import { AuthGuard } from './auth.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
-import { DashboarduserComponent } from './dashboarduser/dashboarduser.component';
 import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
 import { SecureComponent } from './secure/secure.component';
+import {TranslateModule} from '@ngx-translate/core';
+
 
 // const appRoutes: Routes = [
 //   { path: '', component:HomeComponent}
@@ -32,6 +33,10 @@ import { SecureComponent } from './secure/secure.component';
 
 
 @NgModule({
+//   exports: [
+//     CommonModule,
+//     TranslateModule
+// ],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -45,7 +50,6 @@ import { SecureComponent } from './secure/secure.component';
     FilterPipe,
     LogoutComponent,
     VidioyoutubeComponent,
-    DashboarduserComponent,
     UpdatemediaComponent,
     SecureComponent,
 
@@ -56,6 +60,7 @@ import { SecureComponent } from './secure/secure.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    TranslateModule.forRoot(),
     RouterModule.forRoot([
       {
         path: 'dashboard',

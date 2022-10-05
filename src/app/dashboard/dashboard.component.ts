@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Media } from '../models/media';
 import { Users } from '../models/users';
 import { Router, ActivatedRoute  } from '@angular/router';
@@ -133,7 +133,7 @@ export class DashboardComponent implements OnInit {
       return this.form.controls;
     }
 
-    // Afficher media
+    // Get media by user
     getMedia(){
       this.http.get(this.url+"/media/by/user").subscribe((res:any)=>{
         //console.log(res);
