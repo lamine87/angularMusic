@@ -76,12 +76,12 @@ export class DashboarduserComponent implements OnInit {
 
    // Delete media
    deleteMedia(id :any) {
-    this.dataService.deleteMedia(id).subscribe(
+    this.dataService.delete(id).subscribe(
       (res:any) => {
       alert("Souhaitez-vous supprimer ?");
       this.getMedia();
     })
-  }
+   }
     // Get form media
     createForm() {
       this.form = this.formBuilder.group({
@@ -100,6 +100,7 @@ export class DashboarduserComponent implements OnInit {
       this.files = event.target.files[0];
       console.log(this.files);
     }
+
     onSubmit() {
       this.submitted = true;
       // this.requiredImage = true;
@@ -114,10 +115,8 @@ export class DashboarduserComponent implements OnInit {
       formData.append('categories', this.form.value.categories);
       formData.append('url_video', this.form.value.url_video);
       formData.append("image", this.files, this.files.name);
-
       this.dataService.postDataMedia(formData).subscribe((res) => {
         this.data = res;
-
         console.log(this.data);
         if(this.data.status = true) {
           this.toastr.success(JSON.stringify(this.data.message), '', {

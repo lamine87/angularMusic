@@ -23,7 +23,6 @@ import { AuthGuard } from './auth.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
 import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
-import { SecureComponent } from './secure/secure.component';
 import {TranslateModule} from '@ngx-translate/core';
 
 
@@ -37,6 +36,7 @@ import {TranslateModule} from '@ngx-translate/core';
 //     CommonModule,
 //     TranslateModule
 // ],
+
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -51,10 +51,8 @@ import {TranslateModule} from '@ngx-translate/core';
     LogoutComponent,
     VidioyoutubeComponent,
     UpdatemediaComponent,
-    SecureComponent,
-
-
   ],
+
   imports: [
     CommonModule,
     BrowserModule,
@@ -78,7 +76,6 @@ import {TranslateModule} from '@ngx-translate/core';
     ReactiveFormsModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
-
   ],
   providers: [DataService, AuthGuard],
   bootstrap: [AppComponent]

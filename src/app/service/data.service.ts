@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Media } from '../models/media';
 import { Observable, BehaviorSubject } from 'rxjs';
 // import { RouterModule, Routes } from '@angular/router';
+import { Login } from '../models/login';
 import { HttpErrorResponse } from "@angular/common/http";
 import { environment } from 'src/environments/environment.prod';
 import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
@@ -22,18 +23,26 @@ export class DataService {
   public url: string = 'http://localhost:8000/api';
   medias!:Media[];
   id:any;
+  login!:Login[];
   // activitie!: Youtube;
 
   email='';
   password='';
+  wrongCredentials= false;
+
   constructor(
     private http: HttpClient,
     private router: Router
     ) {}
 
+// public activities = new BehaviorSubject<any>([]);
+
+
   public media = new BehaviorSubject<any>([]);
-  // public activities = new BehaviorSubject<any>([]);
+
   public search = new BehaviorSubject<string>("");
+
+
 
   private loggedInStatus = false;
 
@@ -48,15 +57,35 @@ export class DataService {
 
 
   getUserDetails( email:any, password:any) {
-
     // Post thes email and password to api server user info if correct
     return this.http.post<myData>(this.url+"/login", {
       email,
       password
-    }
-
+     }
     )
   }
+
+
+  loginData(pEmail:any, pPassword:any){
+    // this.wrongCredentials = !this.wrongCredentials;
+    const headers = new HttpHeaders();
+    const loginData = {
+      email: pEmail,
+      password: pPassword
+    }
+    return new Observable<boolean>((observer)=>{
+      this.http.post(this.url+"/login", loginData).subscribe(result =>{
+        headers: headers;
+        observer.next(true);
+        observer.complete();
+      },error=>{
+        observer.error(false);
+        observer.complete();
+      });
+    });
+  }
+
+
   // Get media by categorie
   getMediaByCategorie(id:any) {
     return this.http.get(this.url+"/categorie/media/"+id)
@@ -88,17 +117,18 @@ export class DataService {
     });
     })
    }
+// withCredentials: true
+
 
   // Send Media methode post
   postDataMedia(data:any) {
     const headers = new HttpHeaders();
-    localStorage.setItem('user', JSON.stringify(data));
     return this.http.post(this.url+"/addmedia", data, {
-
       headers: headers,
-      withCredentials: true
+
     })
   }
+
 
   // Register 'Create new user'
   postRegister(data:any) {
@@ -119,7 +149,7 @@ export class DataService {
   }
 
   // Delete media
-  deleteMedia(id: any){
+  delete(id: any){
     return this.http.post(this.url+'/destroy/media/'+id,{
     })
   }

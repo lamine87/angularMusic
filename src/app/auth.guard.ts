@@ -8,20 +8,17 @@ import { Router, ActivatedRoute  } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
 
+export class AuthGuard implements CanActivate {
   constructor(private dataService: DataService,
               private router: Router
-    ){
-
-  }
+    ) {}
   canActivate(
-    next: ActivatedRouteSnapshot,
+    route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(this.dataService.isLoginIn){
         this.router.navigate(['/dashboard']);
       }
       return this.dataService.isLoginIn;
   }
-
 }

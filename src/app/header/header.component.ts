@@ -4,7 +4,6 @@ import { Pays } from '../models/pays';
 import { Categories } from '../models/categories';
 import { DataService } from '../service/data.service';
 import { Media } from '../models/media';
-// import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',

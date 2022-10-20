@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Media } from '../models/media';
 import { Youtube } from '../models/youtube';
 import { DataService } from '../service/data.service';
@@ -80,21 +80,18 @@ export class HomeComponent implements OnInit {
       console.log(this.url+"/tag/"+id)
     })
   }
-
   // Filter media by categorie
   filterCategory(event:any){
     let value = event.target.value;
     console.log(value);
     this.getCatMedia(value)
   }
-
 // Get media by categorie
   getCatMedia(id:any){
     this.dataService.getMediaByCategorie(id).subscribe((res:any) =>{
       this.media = res;
       console.log(id)
       console.log(this.url+"/categorie/media/"+id)
-
     })
   }
 

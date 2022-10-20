@@ -5,27 +5,29 @@
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-3 text-center">
-            <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-            <div class="mb-md-2 mt-md-2 pb-4">
+            <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+             <div class="mb-md-2 mt-md-2 pb-4">
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-1">Veuillez saisir votre identifiant et votre mot de passe !</p>
 
               <div class="form-outline form-white mb-2">
-                <input type="email" id="email" placeholder="Email" class="form-control form-control-lg" name="email" ngModel/>
+                <input type="email" id="email" placeholder="Email" class="form-control form-control-lg"
+                name="email" [(ngModel)]="form.email" required/>
                 <label class="form-label" >Email</label>
               </div>
-
               <div class="form-outline form-white mb-1">
-                <input type="password" id="password" placeholder="Mot de passe" class="form-control form-control-lg" name="password" ngModel/>
+                <input type="password" id="password" placeholder="Mot de passe" class="form-control form-control-lg"
+                name="password" [(ngModel)]="form.password" required/>
                 <label class="form-label" >Password</label>
               </div>
 
               <p class="small mb-1 pb-lg-2">
                 <a class="text-white-50" href="#!">Mot de passe oublié ?</a>
               </p>
-              <button class="btn btn-outline-light btn-lg px-4" type="submit">Login</button>
-
+              <button class="btn btn-outline-light btn-lg px-4" type="submit"
+              >Login</button>
             </div>
+
             <!-- Button trigger modal -->
             <div class="mb-3">
               <div class="mb-2">Vous n'avez pas de compte ?</div>

@@ -144,7 +144,7 @@ export class DashboardComponent implements OnInit {
     // Delete media
     deleteMedia(id :any) {
       confirm("Souhaitez-vous supprimer ?");
-      this.dataService.deleteMedia(id).subscribe(
+      this.dataService.delete(id).subscribe(
         (res:any) => {
         // confirm("Souhaitez-vous supprimer ?");
         this.getMedia();
@@ -221,7 +221,7 @@ export class DashboardComponent implements OnInit {
     }
 
 
-    // Get formulaire edit media
+    // Get media in formulaire edit
     editMedia(media:any,) {
       this.showPostMedia = false;
       this.showUpdateMedia = true;
@@ -238,15 +238,17 @@ export class DashboardComponent implements OnInit {
 
     };
 
+
     // Envoie après modification de media
     postEditMedia() {
       this.submitted = true;
-
       if (this.form.invalid) {
         return;
       }
       const formData = new FormData();
+
       // let formData: any = {};
+
       formData.append('title', this.form.value.title);
       formData.append('texte', this.form.value.texte);
       formData.append('pays', this.form.value.pays);

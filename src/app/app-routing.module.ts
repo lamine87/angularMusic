@@ -11,7 +11,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
 import { VidioyoutubeComponent } from './vidioyoutube/vidioyoutube.component';
 import { UpdatemediaComponent } from './updatemedia/updatemedia.component';
-import { SecureComponent } from './secure/secure.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,7 +29,6 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent
   },
-  { path: 'secure', component: SecureComponent },
 
 ];
 

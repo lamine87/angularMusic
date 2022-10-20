@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute  } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Login } from '../models/login';
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   data: any;
   submitted = false;
   formRegister!: FormGroup;
-  form!: FormGroup;
+  // form!: FormGroup;
   login!:Login[];
   selectedDashboard!: Login;
   // email='';
@@ -51,15 +51,37 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
       this.createForm();
-      this.createFormLogin();
+      // this.createFormLogin();
   }
 
-  createFormLogin() {
-    this.form = this.formBuilder.group({
-      email: [''],
-      password: ['']
-    });
+  // createFormLogin() {
+  //   this.form = this.formBuilder.group({
+  //     email: [''],
+  //     password: ['']
+  //   });
+  // }
+
+  public form = {
+    email: null,
+    password: null,
+    token: null,
   }
+
+  onSubmit() {
+    const token = localStorage.getItem("token");
+    return this.http.post(this.url+"/login", this.form).subscribe((res:any) => {
+      console.log(res);
+      token: token;
+      if (res.status == true) {
+        this.router.navigate(['/dashboard']);
+      }else{
+        window.alert(res.message)
+        this.router.navigate(['/login']);
+      }
+    });
+
+  }
+
 
     // loginUser(event: any){
     //   event.preventDefault();
@@ -75,33 +97,32 @@ export class LoginComponent implements OnInit {
     //       window.alert(res.message)
     //       this.router.navigate(['/login']);
     //     }
-
     //   })
     //   console.log(email, password)
     // }
 
-    onSubmit(form:NgForm){
-      const email = form.value.email;
-      const password = form.value.password;
-      // const name = form.value.name;
+    // onSubmit(form:NgForm){
+    //   const email = form.value.email;
+    //   const password = form.value.password;
+    //   // const name = form.value.name;
+    //   console.log(email, password);
 
-      console.log(email, password, name);
+    //   this.http.post(this.url+"/login", {
+    //     email: email,
+    //     password: password,
 
-      this.http.post(this.url+"/login", {
-        email: email,
-        password: password,
+    //   }).subscribe((res:any) => {
+    //     console.log(res);
+    //     localStorage.setItem('user', JSON.stringify(res));
 
-      }).subscribe((res:any) => {
-        console.log(res);
-        localStorage.setItem('', JSON.stringify(res));
+    //     // Redirect to dashboard
+    //     this.router.navigate(['/dashboard']);
+    //   },
+    //     err => {
+    //       console.log(err);
+    //     })
+    // }
 
-        // Redirect to dashboard
-        this.router.navigate(['/dashboard']);
-      },
-        err => {
-          console.log(err);
-        })
-    }
 
     createForm() {
       this.formRegister = this.formBuilder.group({

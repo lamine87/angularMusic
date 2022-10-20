@@ -71,5 +71,13 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark{
 }
 #anim:hover {
   transition: 0.2s ease-in-out;
-  transform: scale(1.1) !important;
+  /* transform: scale(1.1) !important; */
+}
+
+.ng-invalid:not(form){
+  border-left: 5px solid red;
+}
+
+.ng-valid:not(form){
+  border-left: 5px solid green;
 }
