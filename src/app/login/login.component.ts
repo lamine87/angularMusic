@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute  } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Login } from '../models/login';
@@ -31,10 +31,12 @@ export class LoginComponent implements OnInit {
   // form!: FormGroup;
   login!:Login[];
   selectedDashboard!: Login;
-  // email='';
-  // password='';
-  wrongCredentials= false;
-  withCredentials= false;
+
+
+  form : FormGroup = new FormGroup({
+    email: new FormControl(),
+    password: new FormControl()
+  })
 
   constructor(
     private http: HttpClient,
@@ -45,84 +47,28 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     ) { }
 
-  showDashboard(d :Login){
-    this.selectedDashboard = d;
-  }
+    showDashboard(d :Login){
+      this.selectedDashboard = d;
+    }
 
-  ngOnInit(): void {
-      this.createForm();
-      // this.createFormLogin();
-  }
+    ngOnInit(): void {
+        // this.submitForm();
+        // this.createFormLogin();
+    }
 
-  // createFormLogin() {
-  //   this.form = this.formBuilder.group({
-  //     email: [''],
-  //     password: ['']
-  //   });
-  // }
-
-  public form = {
-    email: null,
-    password: null,
-    token: null,
-  }
-
-  onSubmit() {
-    const token = localStorage.getItem("token");
-    return this.http.post(this.url+"/login", this.form).subscribe((res:any) => {
-      console.log(res);
-      token: token;
-      if (res.status == true) {
-        this.router.navigate(['/dashboard']);
-      }else{
-        window.alert(res.message)
-        this.router.navigate(['/login']);
+    submitForm() {
+      if (this.form.invalid) {
+        return;
       }
-    });
-
-  }
-
-
-    // loginUser(event: any){
-    //   event.preventDefault();
-    //   const target = event.target
-    //   const email = target.querySelector('#email').value
-    //   const password = target.querySelector('#password').value
-    //   this.dataService.getUserDetails(email, password).subscribe((res:any) => {
-    //     console.log(res);
-    //     localStorage.setItem('token', JSON.stringify(res));
-    //     if (res.status == true) {
-    //       this.router.navigate(['/dashboard']);
-    //     }else{
-    //       window.alert(res.message)
-    //       this.router.navigate(['/login']);
-    //     }
-    //   })
-    //   console.log(email, password)
-    // }
-
-    // onSubmit(form:NgForm){
-    //   const email = form.value.email;
-    //   const password = form.value.password;
-    //   // const name = form.value.name;
-    //   console.log(email, password);
-
-    //   this.http.post(this.url+"/login", {
-    //     email: email,
-    //     password: password,
-
-    //   }).subscribe((res:any) => {
-    //     console.log(res);
-    //     localStorage.setItem('user', JSON.stringify(res));
-
-    //     // Redirect to dashboard
-    //     this.router.navigate(['/dashboard']);
-    //   },
-    //     err => {
-    //       console.log(err);
-    //     })
-    // }
-
+      this.dataService.login(
+        this.form.get('email')?.value,
+        this.form.get('password')?.value
+        )
+      .subscribe((response) => {
+        this.router.navigate(['/dashboard']);
+      });
+      console.log(this.form);
+    }
 
     createForm() {
       this.formRegister = this.formBuilder.group({

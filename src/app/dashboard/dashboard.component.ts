@@ -134,11 +134,25 @@ export class DashboardComponent implements OnInit {
     }
 
     // Get media by user
+    // getMedia(){
+    //   this.http.get(this.url+"/media/by/user").subscribe((res:any)=>{
+    //     //console.log(res);
+    //     this.media = res;
+    //   });
+    // }
+
+       // Get media by user
     getMedia(){
-      this.http.get(this.url+"/media/by/user").subscribe((res:any)=>{
-        //console.log(res);
-        this.media = res;
-      });
+      const headers = new HttpHeaders();
+      this.http.get(this.url+"/media/by/user", {
+        // Send the authentication token here
+        headers: {
+            'Authorization': 'Bearer' + headers
+        }
+
+      })
+
+      console.log(headers);
     }
 
     // Delete media

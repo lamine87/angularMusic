@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, ActivatedRoute, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService } from './service/data.service';
-import { Router, ActivatedRoute  } from '@angular/router';
+import { ApiService } from './service/api.service';
+import { tap } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -11,14 +13,23 @@ import { Router, ActivatedRoute  } from '@angular/router';
 
 export class AuthGuard implements CanActivate {
   constructor(private dataService: DataService,
-              private router: Router
+              private router: Router,
+              private apiService: ApiService
     ) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.dataService.isLoginIn){
-        this.router.navigate(['/dashboard']);
-      }
-      return this.dataService.isLoginIn;
-  }
+    canActivate(
+      route: ActivatedRouteSnapshot,
+      state: RouterStateSnapshot
+    ):
+      | Observable<boolean | UrlTree>
+      | Promise<boolean | UrlTree>
+      | boolean
+      | UrlTree {
+      return this.dataService.isLoggedIn$.pipe(
+        tap((isLoggedIn) => {
+          if (!isLoggedIn) {
+            this.router.navigate(['/login']);
+          }
+        })
+      );
+    }
 }

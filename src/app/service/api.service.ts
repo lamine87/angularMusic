@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { map } from 'rxjs';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpErrorResponse } from "@angular/common/http";
 import { Observable, BehaviorSubject } from 'rxjs';
 import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 // import { FilterPipe } from '../shared/filter.pipe';
@@ -22,7 +21,11 @@ export class ApiService {
     private router: Router
   ) {}
 
+  login(email: string, password: string) {
+    return this.http.post(this.url+"/login",
+    { email, password });
 
+  }
 
 
 }

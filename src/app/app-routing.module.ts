@@ -19,16 +19,27 @@ const routes: Routes = [
   { path: 'carousel', component: CarouselComponent },
   { path: 'actualite', component: ActualiteComponent },
   { path: 'pays', component: PaysComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'addmedia', component: DashboardComponent },
   // { path: 'update/media/', component: DashboardComponent, canActivate:[AuthGuard] },
   { path: 'logout', component: LogoutComponent, canActivate:[AuthGuard] },
   { path: 'videoyoutube', component: VidioyoutubeComponent },
   { path: "", redirectTo: "/home", pathMatch:"full" },
+
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  // {
+  //   path: '',
+  //   pathMatch: 'full',
+  //   redirectTo: 'login',
+  // },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
+
 
 ];
 
